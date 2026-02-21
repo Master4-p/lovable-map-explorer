@@ -68,9 +68,16 @@ function createPopupContent(placemark: KmlPlacemark): string {
         <p style="font-size:12px;color:#64748b;margin:0 0 10px;line-height:1.5;">
           ${info.description}
         </p>
-        <div style="display:flex;align-items:center;gap:6px;">
-          <span style="width:6px;height:6px;border-radius:50%;background:${color};"></span>
-          <span style="font-size:11px;font-weight:500;color:${color};">${info.status}</span>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:${color};"></span>
+            <span style="font-size:11px;font-weight:500;color:${color};">${info.status}</span>
+          </div>
+          ${info.link ? `<a href="${info.link}" target="_blank" rel="noopener noreferrer" style="
+            font-size:12px;font-weight:600;color:white;background:${color};
+            padding:5px 14px;border-radius:20px;text-decoration:none;
+            transition:opacity 0.2s;
+          " onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Découvrir</a>` : ''}
         </div>
       </div>
     </div>
