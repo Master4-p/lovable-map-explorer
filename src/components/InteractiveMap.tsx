@@ -166,25 +166,6 @@ const InteractiveMap = () => {
             poly.bindPopup(createPopupContent(pm), { maxWidth: 320, className: '' });
             bounds.extend(poly.getBounds());
             layer = poly;
-
-            // Add permanent label at polygon center
-            const center = poly.getBounds().getCenter();
-            const label = L.marker(center, {
-              icon: L.divIcon({
-                className: 'polygon-label',
-                html: `<span style="
-                  font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;
-                  color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.7),0 0 2px rgba(0,0,0,0.5);
-                  white-space:nowrap;pointer-events:none;
-                ">${pm.name}</span>`,
-                iconSize: [0, 0],
-                iconAnchor: [0, 0],
-              }),
-              interactive: false,
-            });
-            label.addTo(map);
-            const existing2 = catMap.get(pm.category) || { count: 0, layers: [] };
-            existing2.layers.push(label);
           } else if (pm.type === 'point') {
             const coord = pm.coordinates as [number, number];
             const icon = L.divIcon({
