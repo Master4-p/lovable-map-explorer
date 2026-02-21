@@ -3,7 +3,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { parseKml, KmlPlacemark } from '@/lib/kmlParser';
 import { getProjectInfo } from '@/lib/projectData';
-import MapLegend from './MapLegend';
+
 
 const CATEGORY_COLORS: Record<string, string> = {
   'Résidentiel': '#2a7d5f',
@@ -55,17 +55,17 @@ function createPopupContent(placemark: KmlPlacemark): string {
           style="width:100%; height:100%; object-fit:cover;"
           onerror="this.style.display='none'"
         />
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 14px;background:linear-gradient(transparent,rgba(0,0,0,0.7));">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:8px 14px;background:linear-gradient(transparent,rgba(10,26,15,0.85));">
           <span style="color:white;font-size:11px;font-weight:500;background:${color};padding:2px 8px;border-radius:20px;">
             ${placemark.category}
           </span>
         </div>
       </div>
-      <div style="padding:14px 16px 16px;">
-        <h3 style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;margin:0 0 6px;color:#1a2332;">
+      <div style="padding:14px 16px 16px;background:#0d1f14;color:#e0ebe4;">
+        <h3 style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;margin:0 0 6px;color:#ffffff;">
           ${placemark.name}
         </h3>
-        <p style="font-size:12px;color:#64748b;margin:0 0 10px;line-height:1.5;">
+        <p style="font-size:12px;color:#8aa696;margin:0 0 10px;line-height:1.5;">
           ${info.description}
         </p>
         <div style="display:flex;align-items:center;justify-content:space-between;">
@@ -74,7 +74,7 @@ function createPopupContent(placemark: KmlPlacemark): string {
             <span style="font-size:11px;font-weight:500;color:${color};">${info.status}</span>
           </div>
           ${info.link ? `<a href="${info.link}" target="_blank" rel="noopener noreferrer" style="
-            font-size:12px;font-weight:600;color:white;background:${color};
+            font-size:12px;font-weight:600;color:#0a1a0f;background:#10b981;
             padding:5px 14px;border-radius:20px;text-decoration:none;
             transition:opacity 0.2s;
           " onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Découvrir</a>` : ''}
@@ -228,7 +228,6 @@ const InteractiveMap = () => {
   return (
     <div className="relative flex-1 w-full h-full">
       <div ref={mapRef} className="w-full h-full" />
-      <MapLegend categories={categories} onToggle={toggleCategory} />
     </div>
   );
 };

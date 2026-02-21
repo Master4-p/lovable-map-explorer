@@ -39,7 +39,7 @@ const projectData: Record<string, ProjectInfo> = {
     link: 'https://lesterresdesongon.com',
   },
   'Le Golf de Songon': {
-    image: 'https://images.unsplash.com/photo-1693572709450-8c1be5b360c4?w=400&h=250&fit=crop',
+    image: '/images/golf-songon.png',
     description: 'Un parcours 18 trous au cœur de la nature ivoirienne.',
     status: 'En construction',
     link: 'https://legolfdesongon.com',
