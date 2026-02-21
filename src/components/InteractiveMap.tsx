@@ -111,8 +111,15 @@ const InteractiveMap = () => {
       attributionControl: false,
     }).setView([5.333, -4.275], 14);
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       maxZoom: 19,
+      attribution: '© Esri',
+    }).addTo(map);
+
+    // Add labels overlay on satellite
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png', {
+      maxZoom: 19,
+      pane: 'overlayPane',
     }).addTo(map);
 
     L.control.attribution({ position: 'bottomleft', prefix: false })
