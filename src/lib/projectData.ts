@@ -1,5 +1,5 @@
 // Project images and descriptions for each named zone
-// You can customize these URLs and descriptions
+// Data sourced from onegreendev.com
 
 export interface ProjectInfo {
   image: string;
@@ -8,14 +8,19 @@ export interface ProjectInfo {
 }
 
 const projectData: Record<string, ProjectInfo> = {
+  'One Green Dev': {
+    image: 'https://images.unsplash.com/photo-1756802156662-d0fa771ba255?w=400&h=250&fit=crop',
+    description: 'Développement & ingénierie de projets durables. 500+ hectares valorisés, 3 projets structurants.',
+    status: 'En développement',
+  },
   'Songon East-Side': {
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&h=250&fit=crop',
-    description: 'Résidence haut standing avec vue panoramique sur le parc naturel.',
+    image: 'https://images.unsplash.com/photo-1595652974625-f01356aa9316?w=400&h=250&fit=crop',
+    description: 'Opportunité foncière stratégique à fort potentiel.',
     status: 'En cours',
   },
   'Songon Extension': {
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=250&fit=crop',
-    description: 'Extension du quartier résidentiel avec nouveaux espaces verts.',
+    image: 'https://images.unsplash.com/photo-1760715752598-eac7633b472d?w=400&h=250&fit=crop',
+    description: 'Vision territoriale long terme, développement durable.',
     status: 'Planifié',
   },
   'PROJET MARINA': {
@@ -24,18 +29,13 @@ const projectData: Record<string, ProjectInfo> = {
     status: 'En développement',
   },
   'Terre de Songon': {
-    image: 'https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=400&h=250&fit=crop',
-    description: 'Terrain aménagé pour un développement résidentiel premium.',
-    status: 'Disponible',
-  },
-  'One Green Dev': {
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=250&fit=crop',
-    description: 'Développement durable avec espaces verts intégrés.',
-    status: 'En développement',
+    image: 'https://images.unsplash.com/photo-1590172815327-22cbf36dd2be?w=400&h=250&fit=crop',
+    description: 'Résidences premium dans un cadre paysager d\'exception.',
+    status: 'En cours',
   },
   'Le Golf de Songon': {
-    image: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=400&h=250&fit=crop',
-    description: 'Golf 18 trous avec clubhouse et installations de classe mondiale.',
+    image: 'https://images.unsplash.com/photo-1693572709450-8c1be5b360c4?w=400&h=250&fit=crop',
+    description: 'Un parcours 18 trous au cœur de la nature ivoirienne.',
     status: 'En construction',
   },
 };
@@ -43,7 +43,7 @@ const projectData: Record<string, ProjectInfo> = {
 // Default info for polygon zones
 const defaultInfo: ProjectInfo = {
   image: 'https://images.unsplash.com/photo-1448630360428-65456885c650?w=400&h=250&fit=crop',
-  description: 'Zone de développement du projet Songon.',
+  description: 'Zone de développement du projet Songon — valorisation foncière et aménagement durable.',
   status: 'En étude',
 };
 
