@@ -15,13 +15,35 @@ const CATEGORY_COLORS: Record<string, string> = {
   'Autre': '#6b7280',
 };
 
+// Distinct color per polygon/lot name for visual differentiation
+const LOT_COLORS: Record<string, string> = {
+  'One Green Dev': '#1e88e5',
+  'Songon East-Side': '#43a047',
+  'Polygon 2FD': '#e53935',
+  'Polygon 2E6': '#8e24aa',
+  'Polygon 1D2': '#f4511e',
+  'Polygon 165': '#00acc1',
+  'Polygon 14F': '#ffb300',
+  'Polygon 13C': '#d81b60',
+  'Polygon 11E': '#3949ab',
+  'Polygon 105': '#00897b',
+  'Polygon F3': '#7cb342',
+  'Polygon DA': '#6d4c41',
+  'Polygon B3': '#c0ca33',
+  'Polygon 99': '#5e35b1',
+};
+
 function getCategoryColor(category: string): string {
   return CATEGORY_COLORS[category] || '#6b7280';
 }
 
+function getLotColor(name: string, category: string): string {
+  return LOT_COLORS[name] || CATEGORY_COLORS[category] || '#6b7280';
+}
+
 function createPopupContent(placemark: KmlPlacemark): string {
   const info = getProjectInfo(placemark.name);
-  const color = getCategoryColor(placemark.category);
+  const color = getLotColor(placemark.name, placemark.category);
 
   return `
     <div style="font-family: 'DM Sans', sans-serif;">
@@ -108,7 +130,7 @@ const InteractiveMap = () => {
         const catMap = new Map<string, { count: number; layers: L.Layer[] }>();
 
         placemarks.forEach((pm) => {
-          const color = getCategoryColor(pm.category);
+          const color = getLotColor(pm.name, pm.category);
           let layer: L.Layer | null = null;
 
           if (pm.type === 'polygon') {
