@@ -10,7 +10,7 @@
   <Data name="extrude"><value>0</value></Data></ExtendedData>
   <Point><coordinates>-4.28119841168092,5.3508665787857</coordinates></Point></Placemark>
 <Placemark>
-<name>Polygon 2BD</name><visibility>1</visibility><ExtendedData>
+<name>One Green Dev</name><visibility>1</visibility><ExtendedData>
   <Data name="fill-opacity"><value>0</value></Data>
   <Data name="stroke-opacity"><value>1</value></Data>
   <Data name="stroke"><value>#ff0000</value></Data>
@@ -33,11 +33,6 @@
   <Data name="tessellate"><value>-1</value></Data>
   <Data name="extrude"><value>0</value></Data></ExtendedData>
   <Point><coordinates>-4.27065634795536,5.33133752976183</coordinates></Point></Placemark>
-<Placemark id="5">
-<name>TF 8129</name><ExtendedData>
-  <Data name="tessellate"><value>-1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
-  <Point><coordinates>-4.26536594697906,5.33118943020596</coordinates></Point></Placemark>
 <Placemark id="6">
 <name>Polygon 2FD</name><visibility>1</visibility><ExtendedData>
   <Data name="fill-opacity"><value>0</value></Data>
@@ -89,7 +84,7 @@
 -4.26615817041116,5.31175574303585
 -4.26605202724536,5.31175429836761</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
 <Placemark>
-<name>Polygon 1D4</name><visibility>1</visibility><ExtendedData>
+<name>Songon East-Side</name><visibility>1</visibility><ExtendedData>
   <Data name="fill-opacity"><value>0</value></Data>
   <Data name="stroke-opacity"><value>1</value></Data>
   <Data name="stroke"><value>#ff0000</value></Data>

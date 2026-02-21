@@ -27,6 +27,7 @@ function categorize(name: string): string {
   if (lower.includes('golf')) return 'Golf';
   if (lower.includes('marina')) return 'Marina';
   if (lower.includes('route')) return 'Infrastructure';
+  if (lower.includes('one green')) return 'Résidentiel';
   if (lower.includes('polygon')) return 'Parcelles';
   if (lower.includes('extension') || lower.includes('east') || lower.includes('songon')) return 'Résidentiel';
   if (lower.includes('tf')) return 'Terrain';

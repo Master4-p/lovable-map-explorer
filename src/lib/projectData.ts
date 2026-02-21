@@ -28,10 +28,10 @@ const projectData: Record<string, ProjectInfo> = {
     description: 'Terrain aménagé pour un développement résidentiel premium.',
     status: 'Disponible',
   },
-  'TF 8129': {
+  'One Green Dev': {
     image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=250&fit=crop',
-    description: 'Parcelle réservée pour projet commercial et bureaux.',
-    status: 'Réservé',
+    description: 'Développement durable avec espaces verts intégrés.',
+    status: 'En développement',
   },
   'Le Golf de Songon': {
     image: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=400&h=250&fit=crop',
