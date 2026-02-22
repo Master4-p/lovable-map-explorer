@@ -28,6 +28,8 @@ function categorize(name: string): string {
   if (lower.includes('marina')) return 'Marina';
   if (lower.includes('route')) return 'Infrastructure';
   if (lower.includes('one green')) return 'Résidentiel';
+  if (lower.includes('323')) return 'Résidentiel';
+  if (lower.includes('1d4')) return 'Résidentiel';
   if (lower.includes('polygon')) return 'Parcelles';
   if (lower.includes('extension') || lower.includes('east') || lower.includes('songon')) return 'Résidentiel';
   if (lower.includes('tf')) return 'Terrain';
@@ -53,11 +55,11 @@ export function parseKml(kmlText: string): KmlPlacemark[] {
       extData[key] = val;
     });
 
-    const style = {
-      stroke: extData['stroke'] || '#2a7d5f',
-      strokeOpacity: extData['stroke-opacity'] ? Number(extData['stroke-opacity']) : 1,
-      fillOpacity: extData['fill-opacity'] ? Number(extData['fill-opacity']) : 0.3,
-    };
+  const style = {
+    stroke: extData['stroke'] || extData['fill'] || '#2a7d5f',
+    strokeOpacity: extData['stroke-opacity'] ? Number(extData['stroke-opacity']) : 1,
+    fillOpacity: extData['fill-opacity'] ? Number(extData['fill-opacity']) : 0.3,
+  };
 
     const polygon = pm.querySelector('Polygon');
     const point = pm.querySelector('Point');
