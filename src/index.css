@@ -168,13 +168,24 @@
   transition: fill-opacity 0.3s ease, stroke-width 0.3s ease;
 }
 
-/* Animated perimeter border — marching ants */
+/* Animated perimeter border — marching ants + glow pulse */
 @keyframes perimeter-dash {
   to {
     stroke-dashoffset: -40;
   }
 }
 
+@keyframes perimeter-glow {
+  0%, 100% {
+    stroke-opacity: 0.5;
+    filter: drop-shadow(0 0 2px rgba(16, 185, 129, 0.3));
+  }
+  50% {
+    stroke-opacity: 1;
+    filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.7)) drop-shadow(0 0 16px rgba(16, 185, 129, 0.3));
+  }
+}
+
 .perimeter-animate {
-  animation: perimeter-dash 1.5s linear infinite;
+  animation: perimeter-dash 0.8s linear infinite, perimeter-glow 3s ease-in-out infinite;
 }
