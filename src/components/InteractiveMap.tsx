@@ -147,11 +147,12 @@ const InteractiveMap = () => {
               const perimeterPoly = L.polygon(coords, {
                 color: '#10b981',
                 weight: 2,
-                dashArray: '10 6',
+                dashArray: '12 8',
                 fillColor: 'transparent',
                 fillOpacity: 0,
-                opacity: 0.6,
+                opacity: 0.7,
                 interactive: false,
+                className: 'perimeter-animate',
               });
               perimeterPoly.addTo(map);
               bounds.extend(perimeterPoly.getBounds());

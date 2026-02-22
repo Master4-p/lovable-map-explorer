@@ -167,3 +167,14 @@
 .leaflet-interactive {
   transition: fill-opacity 0.3s ease, stroke-width 0.3s ease;
 }
+
+/* Animated perimeter border — marching ants */
+@keyframes perimeter-dash {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+.perimeter-animate {
+  animation: perimeter-dash 1.5s linear infinite;
+}
