@@ -28,7 +28,7 @@ const projectData: Record<string, ProjectInfo> = {
     link: 'https://songonextension.com',
   },
   'PROJET MARINA': {
-    image: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=400&h=250&fit=crop',
+    image: '/images/marina-songon.jpg',
     description: 'Marina de luxe avec accès direct à la lagune.',
     status: 'En développement',
   },
