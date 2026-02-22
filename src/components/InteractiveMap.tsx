@@ -17,20 +17,13 @@ const CATEGORY_COLORS: Record<string, string> = {
 
 // Distinct color per polygon/lot name for visual differentiation
 const LOT_COLORS: Record<string, string> = {
-  'One Green Dev': '#1e88e5',
-  'Songon East-Side': '#43a047',
+  'Polygon 356': 'rgba(0,0,0,0)',
+  'Polygon 323': '#10b981',
   'Polygon 2FD': '#e53935',
   'Polygon 2E6': '#8e24aa',
+  'Polygon 1D4': '#43a047',
   'Polygon 1D2': '#f4511e',
-  'Polygon 165': '#00acc1',
-  'Polygon 14F': '#ffb300',
-  'Polygon 13C': '#d81b60',
-  'Polygon 11E': '#3949ab',
-  'Polygon 105': '#00897b',
-  'Polygon F3': '#7cb342',
-  'Polygon DA': '#6d4c41',
-  'Polygon B3': '#c0ca33',
-  'Polygon 99': '#5e35b1',
+  'Songon East-Side': '#43a047',
 };
 
 function getCategoryColor(category: string): string {
@@ -147,8 +140,13 @@ const InteractiveMap = () => {
           const color = getLotColor(pm.name, pm.category);
           let layer: L.Layer | null = null;
 
-          if (pm.type === 'polygon') {
+        if (pm.type === 'polygon') {
             const coords = pm.coordinates as [number, number][];
+            // Skip the large bounding box polygon
+            if (pm.name === 'Polygon 356') {
+              bounds.extend(L.polygon(coords).getBounds());
+              return;
+            }
             const poly = L.polygon(coords, {
               color,
               weight: 2,

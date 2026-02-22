@@ -1,45 +1,84 @@
 <kml xmlns="http://www.opengis.net/kml/2.2"><Document>
-<Placemark id="0">
-<name>Songon East-Side</name><visibility>1</visibility><ExtendedData>
-  <Data name="tessellate"><value>-1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
-  <Point><coordinates>-4.26280100985498,5.33282871264512</coordinates></Point></Placemark>
-<Placemark id="1">
-<name>Songon Extension</name><visibility>1</visibility><ExtendedData>
-  <Data name="tessellate"><value>-1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
-  <Point><coordinates>-4.28119841168092,5.3508665787857</coordinates></Point></Placemark>
 <Placemark>
-<name>One Green Dev</name><visibility>1</visibility><ExtendedData>
+<name>Polygon 356</name><ExtendedData>
+  <Data name="styleUrl"><value>#POLYGON_255_255_255</value></Data>
   <Data name="fill-opacity"><value>0</value></Data>
-  <Data name="stroke-opacity"><value>1</value></Data>
-  <Data name="stroke"><value>#ff0000</value></Data>
-  <Data name="tessellate"><value>1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
+  <Data name="fill"><value>#000000</value></Data></ExtendedData>
   <Polygon>
 <outerBoundaryIs>
-  <LinearRing><coordinates>-4.25680223841099,5.31082248270866
--4.25688985400727,5.35389396139876
--4.29730459319524,5.35380970186823
--4.2972141622538,5.31073890479497
--4.25680223841099,5.31082248270866</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
-<Placemark id="3">
-<name>PROJET MARINA</name><visibility>1</visibility><ExtendedData>
-  <Data name="tessellate"><value>-1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
+  <LinearRing><coordinates>-4.29864935462242,5.35531127458929
+-4.29854267544666,5.30453148354542
+-4.24468903071482,5.30464226264045
+-4.2447912884969,5.35542312008925
+-4.29864935462242,5.35531127458929</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
+<Placemark id="1">
+<name>PROJET MARINA</name><ExtendedData>
+  <Data name="styleUrl"><value>#TEXT_255_255_255</value></Data></ExtendedData>
   <Point><coordinates>-4.2666775000388,5.31263701365499</coordinates></Point></Placemark>
-<Placemark id="4">
-<name>Terre de Songon </name><visibility>1</visibility><ExtendedData>
-  <Data name="tessellate"><value>-1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
+<Placemark id="2">
+<name>Songon East-Side</name><ExtendedData>
+  <Data name="styleUrl"><value>#TEXT_255_255_255</value></Data></ExtendedData>
+  <Point><coordinates>-4.26280100985498,5.33282871264512</coordinates></Point></Placemark>
+<Placemark id="3">
+<name>Terre de Songon</name><ExtendedData>
+  <Data name="styleUrl"><value>#TEXT_255_255_255</value></Data></ExtendedData>
   <Point><coordinates>-4.27065634795536,5.33133752976183</coordinates></Point></Placemark>
-<Placemark id="6">
-<name>Polygon 2FD</name><visibility>1</visibility><ExtendedData>
+<Placemark id="5">
+<name>Songon Extension</name><ExtendedData>
+  <Data name="styleUrl"><value>#TEXT_255_255_255</value></Data></ExtendedData>
+  <Point><coordinates>-4.28981672349835,5.34355160572598</coordinates></Point></Placemark>
+<Placemark>
+<name>Polygon 323</name><ExtendedData>
+  <Data name="styleUrl"><value>#POLYGON_255_255_255</value></Data>
   <Data name="fill-opacity"><value>0</value></Data>
-  <Data name="stroke-opacity"><value>1</value></Data>
-  <Data name="stroke"><value>#ff0000</value></Data>
-  <Data name="tessellate"><value>1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
+  <Data name="fill"><value>#000000</value></Data></ExtendedData>
+  <Polygon>
+<outerBoundaryIs>
+  <LinearRing><coordinates>-4.28009361305539,5.3531859337295
+-4.28248194600749,5.35123942244491
+-4.28255893168813,5.35121192211204
+-4.28404750547774,5.35015282182789
+-4.28408780717158,5.35013339913246
+-4.28472224625005,5.34956092418057
+-4.28499771368721,5.34931981920891
+-4.28565283405878,5.34876271246231
+-4.28604590373567,5.34841268422688
+-4.28656506062171,5.34800152716895
+-4.28671155925727,5.34786407106693
+-4.29085116648274,5.34433697098146
+-4.29113890932233,5.3442432145614
+-4.29300533599065,5.34265134412553
+-4.29349810822246,5.34225534194959
+-4.29443978410947,5.34137623964788
+-4.29574100499515,5.33995479551352
+-4.29703259214033,5.33828331738272
+-4.29512607579176,5.33653175735348
+-4.29448751403709,5.33574971409648
+-4.29366544579409,5.33494230534341
+-4.29150592696183,5.33374005375315
+-4.29068828734664,5.33659028578766
+-4.29022895135643,5.33837623978515
+-4.28937091743221,5.34036370199487
+-4.28834427144397,5.3413735858946
+-4.28644609697683,5.34409711495591
+-4.28574438906872,5.3447524654057
+-4.28698459134341,5.34503981261568
+-4.28625234721834,5.34562534052384
+-4.28557766861347,5.34626746569653
+-4.28529760072391,5.34652957427479
+-4.28373683440293,5.34769273015267
+-4.28270752647313,5.3481213313145
+-4.28208655429861,5.34844442490817
+-4.28087641865372,5.34875606900896
+-4.28083817797167,5.34876953879195
+-4.28042821888621,5.34898010082763
+-4.27900277597725,5.35019255352616
+-4.28009361305539,5.3531859337295</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
+<Placemark>
+<name>Polygon 2FD</name><ExtendedData>
+  <Data name="styleUrl"><value>#POLYGON_255_255_255</value></Data>
+  <Data name="fill-opacity"><value>0</value></Data>
+  <Data name="fill"><value>#000000</value></Data></ExtendedData>
   <Polygon>
 <outerBoundaryIs>
   <LinearRing><coordinates>-4.27415217056107,5.33345339284473
@@ -50,12 +89,10 @@
 -4.27238927570119,5.33344925750142
 -4.27415217056107,5.33345339284473</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
 <Placemark>
-<name>Polygon 2E6</name><visibility>1</visibility><ExtendedData>
+<name>Polygon 2E6</name><ExtendedData>
+  <Data name="styleUrl"><value>#POLYGON_255_255_255</value></Data>
   <Data name="fill-opacity"><value>0</value></Data>
-  <Data name="stroke-opacity"><value>1</value></Data>
-  <Data name="stroke"><value>#ff0000</value></Data>
-  <Data name="tessellate"><value>1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
+  <Data name="fill"><value>#000000</value></Data></ExtendedData>
   <Polygon>
 <outerBoundaryIs>
   <LinearRing><coordinates>-4.26605202724536,5.31175429836761
@@ -84,12 +121,10 @@
 -4.26615817041116,5.31175574303585
 -4.26605202724536,5.31175429836761</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
 <Placemark>
-<name>Songon East-Side</name><visibility>1</visibility><ExtendedData>
+<name>Polygon 1D4</name><ExtendedData>
+  <Data name="styleUrl"><value>#POLYGON_255_255_255</value></Data>
   <Data name="fill-opacity"><value>0</value></Data>
-  <Data name="stroke-opacity"><value>1</value></Data>
-  <Data name="stroke"><value>#ff0000</value></Data>
-  <Data name="tessellate"><value>1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
+  <Data name="fill"><value>#000000</value></Data></ExtendedData>
   <Polygon>
 <outerBoundaryIs>
   <LinearRing><coordinates>-4.25755916284594,5.33497116651505
@@ -114,12 +149,10 @@
 -4.25755519214055,5.3341910251344
 -4.25755916284594,5.33497116651505</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
 <Placemark>
-<name>Polygon 1D2</name><visibility>1</visibility><ExtendedData>
+<name>Polygon 1D2</name><ExtendedData>
+  <Data name="styleUrl"><value>#POLYGON_255_255_255</value></Data>
   <Data name="fill-opacity"><value>0</value></Data>
-  <Data name="stroke-opacity"><value>1</value></Data>
-  <Data name="stroke"><value>#ff0000</value></Data>
-  <Data name="tessellate"><value>1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
+  <Data name="fill"><value>#000000</value></Data></ExtendedData>
   <Polygon>
 <outerBoundaryIs>
   <LinearRing><coordinates>-4.26410513842697,5.33343952806579
@@ -131,255 +164,12 @@
 -4.26408256505164,5.33131082368574
 -4.26410513842697,5.33343952806579</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
 <Placemark>
-<name>Polygon 165</name><visibility>1</visibility><ExtendedData>
+<name>Route 2E5</name><ExtendedData>
+  <Data name="styleUrl"><value>#POLYGON_255_255_255</value></Data>
   <Data name="fill-opacity"><value>0</value></Data>
-  <Data name="stroke-opacity"><value>1</value></Data>
-  <Data name="stroke"><value>#ff0000</value></Data>
-  <Data name="tessellate"><value>1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
-  <Polygon>
-<outerBoundaryIs>
-  <LinearRing><coordinates>-4.29206585256562,5.33878902986057
--4.29443978410947,5.34137623964788
--4.29523279332893,5.3405335682434
--4.29574100499515,5.33995479551352
--4.29703259214033,5.33828331738272
--4.29639141892655,5.33771319620444
--4.29590699644104,5.33724811815145
--4.29542550138419,5.336817938274
--4.29512607579176,5.33653175735348
--4.29448751403709,5.33574971409648
--4.29206585256562,5.33878902986057
--4.29206585256562,5.33878902986057</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
-<Placemark>
-<name>Polygon 14F</name><visibility>1</visibility><ExtendedData>
-  <Data name="fill-opacity"><value>0</value></Data>
-  <Data name="stroke-opacity"><value>1</value></Data>
-  <Data name="stroke"><value>#ff0000</value></Data>
-  <Data name="tessellate"><value>1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
-  <Polygon>
-<outerBoundaryIs>
-  <LinearRing><coordinates>-4.28255893168813,5.35121192211204
--4.28404750547774,5.35015282182789
--4.28270752647313,5.3481213313145
--4.28208655429861,5.34844442490817
--4.28087641865372,5.34875606900896
--4.28255893168813,5.35121192211204</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
-<Placemark>
-<name>Polygon 13C</name><visibility>1</visibility><ExtendedData>
-  <Data name="fill-opacity"><value>0</value></Data>
-  <Data name="stroke-opacity"><value>1</value></Data>
-  <Data name="stroke"><value>#ff0000</value></Data>
-  <Data name="tessellate"><value>1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
-  <Polygon>
-<outerBoundaryIs>
-  <LinearRing><coordinates>-4.29085116648274,5.34433697098146
--4.28896473287698,5.34226457896633
--4.28811385566902,5.34323000705037
--4.28778432477101,5.3465851737341
--4.28793974410525,5.34674813999763
--4.29085116648274,5.34433697098146</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
-<Placemark>
-<name>Polygon 11E</name><visibility>1</visibility><ExtendedData>
-  <Data name="fill-opacity"><value>0</value></Data>
-  <Data name="stroke-opacity"><value>1</value></Data>
-  <Data name="stroke"><value>#ff0000</value></Data>
-  <Data name="tessellate"><value>1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
-  <Polygon>
-<outerBoundaryIs>
-  <LinearRing><coordinates>-4.28248194600749,5.35123942244491
--4.286816085013893,5.347735532206741
--4.29264667392373,5.34296782525199
--4.2959547924679935,5.339904662584141
--4.296947253274272,5.338167228548306
--4.294600677767945,5.335939875419367
--4.29351008982297,5.3348261988548975
--4.29150980398658,5.333712522290428
--4.2905820695615855,5.337090761488428
--4.289323535903778,5.340510171332684
--4.288685651702726,5.341556183068036
--4.2883283085512645,5.3412055798854645
--4.28733308119625,5.342815136052611
--4.285878786671578,5.344754798351271
--4.286911396899603,5.344988237168032
--4.285648671270899,5.3462373891862605
--4.28373820011482,5.347700238484121
--4.282105283588154,5.348416994772659
--4.28126790556777,5.348576364768143
--4.28042821888621,5.34898010082763
--4.27900277597725,5.35019255352616
--4.28009361305539,5.3531859337295
--4.28181423688117,5.35175562772617
--4.28248194600749,5.35123942244491
--4.28248194600749,5.35123942244491</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
-<Placemark>
-<name>Polygon 105</name><visibility>1</visibility><ExtendedData>
-  <Data name="fill-opacity"><value>0</value></Data>
-  <Data name="stroke-opacity"><value>1</value></Data>
-  <Data name="stroke"><value>#ff0000</value></Data>
-  <Data name="tessellate"><value>1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
-  <Polygon>
-<outerBoundaryIs>
-  <LinearRing><coordinates>-4.2909350144561,5.33999283750107
--4.29125939072263,5.33962648325854
--4.29157048395848,5.3392303873435
--4.29191477811331,5.3388025314325
--4.29242793478231,5.33816482810963
--4.29296167258059,5.3375073889122
--4.29307564312909,5.33736700385396
--4.29363115622087,5.33668274065841
--4.29412326504334,5.33607657542066
--4.29423055575687,5.33594520602372
--4.29432850618831,5.33582527304504
--4.29366544579409,5.33494230534341
--4.29313091543134,5.33465196683147
--4.29252130551614,5.33432084668805
--4.29150592696183,5.33374005375315
--4.29142531747793,5.33403906873035
--4.2912919404629,5.33453382063993
--4.2910300939372,5.33547041730467
--4.2907963483513,5.33630649854938
--4.29083835844214,5.33733812471305
--4.2908820254832,5.33841042545149
--4.29092833635044,5.33949211065369
--4.2909350144561,5.33999283750107
--4.2909350144561,5.33999283750107</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
-<Placemark>
-<name>Polygon F3</name><visibility>1</visibility><ExtendedData>
-  <Data name="fill-opacity"><value>0</value></Data>
-  <Data name="stroke-opacity"><value>1</value></Data>
-  <Data name="stroke"><value>#ff0000</value></Data>
-  <Data name="tessellate"><value>1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
-  <Polygon>
-<outerBoundaryIs>
-  <LinearRing><coordinates>-4.29102803399966,5.34435114085245
--4.29100739833126,5.3435078982855
--4.29100313271842,5.34333358934033
--4.29096798367952,5.34189724547543
--4.29068828734664,5.33659028578766
--4.29060162496344,5.33698776919338
--4.29039617300824,5.33770135681267
--4.29022895135643,5.33837623978515
--4.29004305736068,5.33882919038594
--4.28974679645407,5.33950421327605
--4.28937091743221,5.34036370199487
--4.28857608026853,5.3415762694662
--4.29102803399966,5.34435114085245
--4.29102803399966,5.34435114085245</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
-<Placemark>
-<name>Polygon DA</name><visibility>1</visibility><ExtendedData>
-  <Data name="fill-opacity"><value>0</value></Data>
-  <Data name="stroke-opacity"><value>1</value></Data>
-  <Data name="stroke"><value>#ff0000</value></Data>
-  <Data name="tessellate"><value>1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
-  <Polygon>
-<outerBoundaryIs>
-  <LinearRing><coordinates>-4.29113890932233,5.3442432145614
--4.29175878118996,5.34371859802269
--4.29225110241748,5.34330193056272
--4.29267723273841,5.34293435951598
--4.29300533599065,5.34265134412553
--4.29349810822246,5.34225534194959
--4.29380502149501,5.3419602204114
--4.29432617373231,5.34147219031214
--4.29420531384917,5.34134253100643
--4.29409399239698,5.34122310451295
--4.29379330014088,5.34089987817784
--4.29344446249371,5.34052489768755
--4.29291224170491,5.33995412177747
--4.29230351841113,5.33930129918294
--4.29216933048737,5.33915738962577
--4.29194829929493,5.33891721454787
--4.29139200081617,5.33955266229206
--4.29128112193334,5.33967931666638
--4.29096214270662,5.34008233968292
--4.29099149101523,5.34062121700839
--4.29100237839553,5.34082112425901
--4.29107960497263,5.34225286831129
--4.29112290972623,5.34383235497742
--4.29113890932233,5.3442432145614
--4.29113890932233,5.3442432145614</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
-<Placemark>
-<name>Polygon B3</name><visibility>1</visibility><ExtendedData>
-  <Data name="fill-opacity"><value>0</value></Data>
-  <Data name="stroke-opacity"><value>1</value></Data>
-  <Data name="stroke"><value>#ff0000</value></Data>
-  <Data name="tessellate"><value>1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
-  <Polygon>
-<outerBoundaryIs>
-  <LinearRing><coordinates>-4.28674825792407,5.34782308509982
--4.28727705747829,5.34734999897109
--4.28756327201869,5.34709393908697
--4.28792098784907,5.34678483370524
--4.28779753722519,5.34664131089518
--4.28760843324704,5.34654892512493
--4.28768124496633,5.3457746585678
--4.28769768573927,5.34559983045745
--4.28774684256789,5.34511895818523
--4.28790668271673,5.3435675409656
--4.28795362640664,5.34311190318795
--4.28805697015306,5.34296457235035
--4.28852525583924,5.34238984958332
--4.28883198717386,5.34201340036644
--4.28844158107998,5.34150124262124
--4.28834427144397,5.3413735858946
--4.28764882097386,5.3423711091004
--4.28668836008745,5.34374944864518
--4.28644609697683,5.34409711495591
--4.28574438906872,5.3447524654057
--4.28698459134341,5.34503981261568
--4.28670173206782,5.34526599694938
--4.28625234721834,5.34562534052384
--4.2856064654884,5.34625192561926
--4.28674825792407,5.34782308509982</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
-<Placemark>
-<name>Polygon 99</name><visibility>1</visibility><ExtendedData>
-  <Data name="fill-opacity"><value>0</value></Data>
-  <Data name="stroke-opacity"><value>1</value></Data>
-  <Data name="stroke"><value>#ff0000</value></Data>
-  <Data name="tessellate"><value>1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
-  <Polygon>
-<outerBoundaryIs>
-  <LinearRing><coordinates>-4.28671155925727,5.34786407106693
--4.28611122674171,5.34701382716971
--4.28605244997293,5.34693160811707
--4.28557766861347,5.34626746569653
--4.28529760072391,5.34652957427479
--4.28373683440293,5.34769273015267
--4.28275468388339,5.34810657802405
--4.28300259115748,5.34846912658764
--4.28328987984804,5.348896709974
--4.28367629734941,5.34950043486179
--4.2840029107426,5.34999104176071
--4.28408780717158,5.35013339913246
--4.28414133125031,5.35008634456752
--4.28441244819062,5.34983207696964
--4.28472224625005,5.34956092418057
--4.28499771368721,5.34931981920891
--4.28527224700917,5.34909797549554
--4.28565283405878,5.34876271246231
--4.28604590373567,5.34841268422688
--4.28656506062171,5.34800152716895
--4.28671155925727,5.34786407106693</coordinates></LinearRing></outerBoundaryIs></Polygon></Placemark>
-<Placemark>
-<name>Route 2E5</name><visibility>1</visibility><ExtendedData>
-  <Data name="fill-opacity"><value>0</value></Data>
-  <Data name="stroke-opacity"><value>1</value></Data>
-  <Data name="stroke"><value>#ff0000</value></Data>
-  <Data name="tessellate"><value>1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
+  <Data name="fill"><value>#000000</value></Data></ExtendedData>
   <LineString><coordinates>-4.26719929276113,5.31345394386099
 -4.26535031333203,5.31339901258718</coordinates></LineString></Placemark>
-<Placemark id="20">
-<name>Le Golf de Songon</name><visibility>1</visibility><ExtendedData>
-  <Data name="tessellate"><value>-1</value></Data>
-  <Data name="extrude"><value>0</value></Data></ExtendedData>
-  <Point><coordinates>-4.2735601135420325,5.3306099085811525</coordinates></Point></Placemark></Document></kml>
+<Placemark id="11">
+<name>Le Golf de Songon</name><ExtendedData></ExtendedData>
+  <Point><coordinates>-4.273887358105441,5.330223227968062</coordinates></Point></Placemark></Document></kml>

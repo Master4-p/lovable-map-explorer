@@ -46,6 +46,12 @@ const projectData: Record<string, ProjectInfo> = {
   },
 };
 
+// Named polygon mappings
+const polygonAliases: Record<string, string> = {
+  'Polygon 323': 'Songon Extension',
+  'Polygon 1D4': 'Songon East-Side',
+};
+
 // Default info for polygon zones
 const defaultInfo: ProjectInfo = {
   image: 'https://images.unsplash.com/photo-1448630360428-65456885c650?w=400&h=250&fit=crop',
@@ -54,5 +60,6 @@ const defaultInfo: ProjectInfo = {
 };
 
 export function getProjectInfo(name: string): ProjectInfo {
-  return projectData[name.trim()] || defaultInfo;
+  const key = polygonAliases[name.trim()] || name.trim();
+  return projectData[key] || defaultInfo;
 }
