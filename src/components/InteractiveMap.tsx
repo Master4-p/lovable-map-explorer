@@ -142,9 +142,19 @@ const InteractiveMap = () => {
 
         if (pm.type === 'polygon') {
             const coords = pm.coordinates as [number, number][];
-            // Skip the large bounding box polygon
+            // Large perimeter polygon — render as dashed boundary, no popup
             if (pm.name === 'Polygon 356') {
-              bounds.extend(L.polygon(coords).getBounds());
+              const perimeterPoly = L.polygon(coords, {
+                color: '#10b981',
+                weight: 2,
+                dashArray: '10 6',
+                fillColor: 'transparent',
+                fillOpacity: 0,
+                opacity: 0.6,
+                interactive: false,
+              });
+              perimeterPoly.addTo(map);
+              bounds.extend(perimeterPoly.getBounds());
               return;
             }
             const poly = L.polygon(coords, {
