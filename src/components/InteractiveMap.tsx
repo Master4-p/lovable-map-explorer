@@ -153,11 +153,23 @@ const InteractiveMap = () => {
                 opacity: 0.7,
                 className: 'perimeter-animate',
               });
-              perimeterPoly.bindTooltip('One Green Dev', {
+              // Position tooltip toward northeast of the perimeter
+              const ne = perimeterPoly.getBounds().getNorthEast();
+              const center = perimeterPoly.getBounds().getCenter();
+              const tooltipLatLng = L.latLng(
+                center.lat + (ne.lat - center.lat) * 0.7,
+                center.lng + (ne.lng - center.lng) * 0.7
+              );
+              const tooltipMarker = L.marker(tooltipLatLng, {
+                opacity: 0,
+                interactive: true,
+              });
+              tooltipMarker.bindTooltip('One Green Dev', {
                 permanent: false,
                 direction: 'center',
                 className: 'ogd-tooltip',
               });
+              tooltipMarker.addTo(map);
               perimeterPoly.addTo(map);
               bounds.extend(perimeterPoly.getBounds());
               return;
