@@ -189,3 +189,22 @@
 .perimeter-animate {
   animation: perimeter-dash 0.8s linear infinite, perimeter-glow 3s ease-in-out infinite;
 }
+
+/* One Green Dev tooltip */
+.ogd-tooltip {
+  background: rgba(10, 26, 15, 0.9) !important;
+  border: 1px solid #10b981 !important;
+  color: #10b981 !important;
+  font-family: 'Playfair Display', serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.3) !important;
+}
+
+.ogd-tooltip::before {
+  border-top-color: rgba(10, 26, 15, 0.9) !important;
+}
