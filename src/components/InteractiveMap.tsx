@@ -151,28 +151,15 @@ const InteractiveMap = () => {
                 fillColor: 'transparent',
                 fillOpacity: 0,
                 opacity: 0.7,
-                interactive: false,
                 className: 'perimeter-animate',
+              });
+              perimeterPoly.bindTooltip('One Green Dev', {
+                permanent: false,
+                direction: 'center',
+                className: 'ogd-tooltip',
               });
               perimeterPoly.addTo(map);
               bounds.extend(perimeterPoly.getBounds());
-
-              // Add "One Green Dev" label at center of perimeter
-              const center = perimeterPoly.getBounds().getCenter();
-              const label = L.divIcon({
-                className: 'ogd-label',
-                html: `<div style="
-                  font-family:'Playfair Display',serif;
-                  font-size:18px;font-weight:700;color:#10b981;
-                  text-shadow:0 0 12px rgba(16,185,129,0.5),0 2px 4px rgba(0,0,0,0.6);
-                  white-space:nowrap;letter-spacing:2px;text-transform:uppercase;
-                  pointer-events:none;
-                ">One Green Dev</div>`,
-                iconSize: [0, 0],
-                iconAnchor: [0, 0],
-              });
-              L.marker(center, { icon: label, interactive: false }).addTo(map);
-
               return;
             }
             const poly = L.polygon(coords, {
