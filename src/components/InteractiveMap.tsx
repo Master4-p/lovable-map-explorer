@@ -153,7 +153,7 @@ const InteractiveMap = () => {
                 opacity: 0.7,
                 className: 'perimeter-animate',
               });
-              // Position tooltip toward northeast of the perimeter
+              // Tooltip at northeast, triggered by hovering anywhere on the perimeter
               const ne = perimeterPoly.getBounds().getNorthEast();
               const center = perimeterPoly.getBounds().getCenter();
               const tooltipLatLng = L.latLng(
@@ -162,14 +162,21 @@ const InteractiveMap = () => {
               );
               const tooltipMarker = L.marker(tooltipLatLng, {
                 opacity: 0,
-                interactive: true,
-              });
-              tooltipMarker.bindTooltip('One Green Dev', {
-                permanent: false,
-                direction: 'center',
-                className: 'ogd-tooltip',
+                interactive: false,
               });
               tooltipMarker.addTo(map);
+
+              perimeterPoly.on('mouseover', () => {
+                tooltipMarker.bindTooltip('One Green Dev', {
+                  permanent: true,
+                  direction: 'top',
+                  className: 'ogd-tooltip',
+                }).openTooltip();
+              });
+              perimeterPoly.on('mouseout', () => {
+                tooltipMarker.closeTooltip();
+                tooltipMarker.unbindTooltip();
+              });
               perimeterPoly.addTo(map);
               bounds.extend(perimeterPoly.getBounds());
               return;
