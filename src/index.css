@@ -415,3 +415,148 @@
 .masterplan-route {
   opacity: 0.6;
 }
+
+/* ═══════════════════════════════════════════════════
+   2D / 3D Toggle Button
+   ═══════════════════════════════════════════════════ */
+.view-toggle-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(10, 26, 15, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 8px;
+  color: #10b981;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.view-toggle-btn:hover {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.5);
+  transform: translateY(-1px);
+}
+
+/* ═══════════════════════════════════════════════════
+   3D Scene UI
+   ═══════════════════════════════════════════════════ */
+.zone-3d-label {
+  background: rgba(10, 26, 15, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e0ebe4;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.bubble-3d {
+  background: rgba(13, 26, 18, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  border-radius: 12px;
+  width: 240px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  font-family: 'DM Sans', sans-serif;
+  position: relative;
+}
+
+.bubble-3d-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background 0.2s;
+}
+
+.bubble-3d-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.bubble-3d-header {
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.bubble-3d-badge {
+  font-size: 9px;
+  font-weight: 600;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bubble-3d-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  margin: 8px 0 0;
+}
+
+.bubble-3d-desc {
+  padding: 0 16px;
+  font-size: 11px;
+  color: #8aa696;
+  line-height: 1.5;
+  margin: 10px 0;
+}
+
+.bubble-3d-footer {
+  padding: 0 16px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bubble-3d-status {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.bubble-3d-cta {
+  font-size: 10px;
+  font-weight: 600;
+  color: #0a1a0f;
+  background: #10b981;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.bubble-3d-cta:hover {
+  opacity: 0.85;
+}
