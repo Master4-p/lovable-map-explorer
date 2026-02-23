@@ -13,12 +13,33 @@ const ZONE_STYLES: Record<string, { fill: string; border: string; label: string 
   'Polygon 1D2': { fill: 'rgba(249, 115, 22, 0.28)', border: '#ea580c', label: 'Zone Résidentielle B' },
 };
 
-const MARKER_COLORS: Record<string, string> = {
-  'PROJET MARINA': '#8b5cf6',
-  'Songon East-Side': '#22c55e',
-  'Terre de Songon': '#f97316',
-  'Songon Extension': '#10b981',
-  'Le Golf de Songon': '#3b82f6',
+// Marker config — color, category icon SVG, abbreviation
+const MARKER_CONFIG: Record<string, { color: string; icon: string; abbr: string }> = {
+  'PROJET MARINA': {
+    color: '#8b5cf6',
+    abbr: 'M',
+    icon: '<path d="M3 18V12C3 12 5 8 12 8C19 8 21 12 21 12V18" stroke-width="1.5" stroke-linecap="round"/><path d="M6 18V14" stroke-width="1.5"/><path d="M12 18V10" stroke-width="1.5"/><path d="M18 18V14" stroke-width="1.5"/>',
+  },
+  'Songon East-Side': {
+    color: '#22c55e',
+    abbr: 'SE',
+    icon: '<rect x="4" y="8" width="6" height="10" rx="1" stroke-width="1.5"/><rect x="14" y="5" width="6" height="13" rx="1" stroke-width="1.5"/><line x1="2" y1="18" x2="22" y2="18" stroke-width="1.5"/>',
+  },
+  'Terre de Songon': {
+    color: '#f97316',
+    abbr: 'TS',
+    icon: '<rect x="4" y="8" width="16" height="10" rx="1" stroke-width="1.5"/><path d="M4 8L12 3L20 8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="18" x2="12" y2="12" stroke-width="1.5"/>',
+  },
+  'Songon Extension': {
+    color: '#10b981',
+    abbr: 'EX',
+    icon: '<circle cx="12" cy="12" r="3" stroke-width="1.5"/><path d="M12 2V5" stroke-width="1.5" stroke-linecap="round"/><path d="M12 19V22" stroke-width="1.5" stroke-linecap="round"/><path d="M2 12H5" stroke-width="1.5" stroke-linecap="round"/><path d="M19 12H22" stroke-width="1.5" stroke-linecap="round"/>',
+  },
+  'Le Golf de Songon': {
+    color: '#3b82f6',
+    abbr: 'G',
+    icon: '<circle cx="12" cy="8" r="2" stroke-width="1.5"/><path d="M12 10V18" stroke-width="1.5" stroke-linecap="round"/><path d="M8 18C8 18 10 16 12 18C14 20 16 18 16 18" stroke-width="1.5" stroke-linecap="round"/>',
+  },
 };
 
 function getZoneStyle(name: string) {
@@ -35,7 +56,7 @@ function createInfoBubble(placemark: KmlPlacemark): string {
       <div class="bubble-image">
         <img src="${info.image}" alt="${displayName}" loading="lazy" onerror="this.style.display='none'" />
         <div class="bubble-image-overlay">
-          <span class="bubble-badge" style="background:${MARKER_COLORS[placemark.name] || style.border}">${placemark.category}</span>
+          <span class="bubble-badge" style="background:${MARKER_CONFIG[placemark.name]?.color || style.border}">${placemark.category}</span>
         </div>
       </div>
       <div class="bubble-content">
@@ -43,8 +64,8 @@ function createInfoBubble(placemark: KmlPlacemark): string {
         <p class="bubble-desc">${info.description}</p>
         <div class="bubble-footer">
           <div class="bubble-status">
-            <span class="bubble-dot" style="background:${MARKER_COLORS[placemark.name] || style.border}"></span>
-            <span style="color:${MARKER_COLORS[placemark.name] || style.border}">${info.status}</span>
+            <span class="bubble-dot" style="background:${MARKER_CONFIG[placemark.name]?.color || style.border}"></span>
+            <span style="color:${MARKER_CONFIG[placemark.name]?.color || style.border}">${info.status}</span>
           </div>
           ${info.link ? `<a href="${info.link}" target="_blank" rel="noopener noreferrer" class="bubble-cta">Découvrir</a>` : ''}
         </div>
@@ -208,22 +229,23 @@ const InteractiveMap = () => {
 
           } else if (pm.type === 'point') {
             const coord = pm.coordinates as [number, number];
-            const pinColor = MARKER_COLORS[pm.name] || '#10b981';
+            const markerCfg = MARKER_CONFIG[pm.name] || { color: '#10b981', abbr: '•', icon: '<circle cx="12" cy="12" r="4" stroke-width="1.5"/>' };
 
             const icon = L.divIcon({
-              className: 'masterplan-pin',
+              className: 'masterplan-marker',
               html: `
-                <div class="pin-outer" style="--pin-color:${pinColor}">
-                  <div class="pin-inner" style="background:${pinColor}">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+                <div class="marker-shell" style="--marker-color:${markerCfg.color}">
+                  <div class="marker-glow"></div>
+                  <div class="marker-body">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                      ${markerCfg.icon}
                     </svg>
                   </div>
-                  <div class="pin-pulse" style="background:${pinColor}"></div>
+                  <span class="marker-abbr">${markerCfg.abbr}</span>
                 </div>
               `,
-              iconSize: [28, 28],
-              iconAnchor: [14, 14],
+              iconSize: [36, 44],
+              iconAnchor: [18, 22],
             });
 
             const marker = L.marker(coord, { icon });
@@ -246,11 +268,9 @@ const InteractiveMap = () => {
               activePopupRef.current = popup;
             });
 
-            // Hover tooltip with name
-            const info = getProjectInfo(pm.name);
             marker.bindTooltip(pm.name, {
               direction: 'top',
-              offset: L.point(0, -14),
+              offset: L.point(0, -18),
               className: 'pin-tooltip',
             });
 
