@@ -174,11 +174,12 @@ const InteractiveMap = () => {
 
             // Hover highlight
             poly.on('mouseover', function () {
-              this.setStyle({ weight: 3, opacity: 1 });
+              this.setStyle({ weight: 3.5, opacity: 1, fillOpacity: 1.4 });
               this.getElement()?.classList.add('zone-hover');
+              this.bringToFront();
             });
             poly.on('mouseout', function () {
-              this.setStyle({ weight: 2, opacity: 0.9 });
+              this.setStyle({ weight: 2, opacity: 0.9, fillOpacity: 1 });
               this.getElement()?.classList.remove('zone-hover');
             });
 
