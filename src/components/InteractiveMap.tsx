@@ -163,18 +163,14 @@ const InteractiveMap = () => {
               className: 'masterplan-zone',
             });
 
-            // Zone label at center
             const zoneCenter = poly.getBounds().getCenter();
-            const labelMarker = L.marker(zoneCenter, {
-              icon: L.divIcon({
-                className: 'zone-label',
-                html: `<span>${zoneStyle.label}</span>`,
-                iconSize: [120, 24],
-                iconAnchor: [60, 12],
-              }),
-              interactive: false,
+
+            // Tooltip on hover instead of static label
+            poly.bindTooltip(zoneStyle.label, {
+              direction: 'center',
+              className: 'zone-tooltip',
+              permanent: false,
             });
-            labelMarker.addTo(map);
 
             // Hover highlight
             poly.on('mouseover', function () {
