@@ -428,67 +428,67 @@
   align-items: center;
   gap: 6px;
   padding: 8px 14px;
-  background: rgba(10, 26, 15, 0.85);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(16, 185, 129, 0.25);
+  border: 1px solid #cbd5e1;
   border-radius: 8px;
-  color: #10b981;
+  color: #475569;
   font-family: 'DM Sans', sans-serif;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s, border-color 0.2s, transform 0.15s;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .view-toggle-btn:hover {
-  background: rgba(16, 185, 129, 0.15);
-  border-color: rgba(16, 185, 129, 0.5);
+  background: #f1f5f9;
+  border-color: #94a3b8;
   transform: translateY(-1px);
 }
 
 /* ═══════════════════════════════════════════════════
-   3D Scene UI
+   Isometric Scene UI
    ═══════════════════════════════════════════════════ */
-.zone-3d-label {
-  background: rgba(10, 26, 15, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #e0ebe4;
+.iso-label {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #cbd5e1;
+  color: #334155;
   font-family: 'DM Sans', sans-serif;
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   padding: 4px 12px;
   border-radius: 6px;
   white-space: nowrap;
   pointer-events: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.bubble-3d {
-  background: rgba(13, 26, 18, 0.95);
+.iso-bubble {
+  background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(16, 185, 129, 0.15);
+  border: 1px solid #e2e8f0;
   border-radius: 12px;
   width: 240px;
   padding: 0;
   overflow: hidden;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
   font-family: 'DM Sans', sans-serif;
   position: relative;
 }
 
-.bubble-3d-close {
+.iso-bubble-close {
   position: absolute;
   top: 8px;
   right: 8px;
   width: 22px;
   height: 22px;
-  background: rgba(255, 255, 255, 0.1);
+  background: #f1f5f9;
   border: none;
   border-radius: 50%;
-  color: rgba(255, 255, 255, 0.5);
+  color: #64748b;
   font-size: 14px;
   cursor: pointer;
   display: flex;
@@ -498,65 +498,64 @@
   transition: background 0.2s;
 }
 
-.bubble-3d-close:hover {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
+.iso-bubble-close:hover {
+  background: #e2e8f0;
+  color: #334155;
 }
 
-.bubble-3d-header {
+.iso-bubble-header {
   padding: 14px 16px 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid #f1f5f9;
 }
 
-.bubble-3d-badge {
+.iso-bubble-badge {
   font-size: 9px;
   font-weight: 600;
-  color: white;
   padding: 2px 8px;
   border-radius: 20px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.bubble-3d-title {
+.iso-bubble-title {
   font-family: 'Playfair Display', serif;
   font-size: 14px;
   font-weight: 600;
-  color: white;
+  color: #1e293b;
   margin: 8px 0 0;
 }
 
-.bubble-3d-desc {
+.iso-bubble-desc {
   padding: 0 16px;
   font-size: 11px;
-  color: #8aa696;
+  color: #64748b;
   line-height: 1.5;
   margin: 10px 0;
 }
 
-.bubble-3d-footer {
+.iso-bubble-footer {
   padding: 0 16px 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.bubble-3d-status {
+.iso-bubble-status {
   font-size: 11px;
   font-weight: 500;
 }
 
-.bubble-3d-cta {
+.iso-bubble-cta {
   font-size: 10px;
   font-weight: 600;
-  color: #0a1a0f;
-  background: #10b981;
+  color: white;
+  background: #475569;
   padding: 4px 12px;
   border-radius: 20px;
   text-decoration: none;
   transition: opacity 0.2s;
 }
 
-.bubble-3d-cta:hover {
+.iso-bubble-cta:hover {
   opacity: 0.85;
 }

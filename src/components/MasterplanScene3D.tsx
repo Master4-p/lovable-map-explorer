@@ -1,36 +1,31 @@
 import { useRef, useState, useMemo, useCallback, useEffect } from 'react';
 import { Canvas, useThree, useFrame } from '@react-three/fiber';
-import { OrbitControls, Environment, Html, ContactShadows } from '@react-three/drei';
+import { OrbitControls, Html, OrthographicCamera } from '@react-three/drei';
 import * as THREE from 'three';
 import { parseKml, KmlPlacemark } from '@/lib/kmlParser';
 import { getProjectInfo } from '@/lib/projectData';
 import { coordsToXZ, latLngToXZ } from '@/lib/geoProjection';
 
-// Zone extrusion heights and colors
+// Pastel zone config for isometric maquette blanche
 const ZONE_CONFIG: Record<string, { color: string; height: number; label: string }> = {
-  'Polygon 323': { color: '#10b981', height: 1.8, label: 'Songon Extension' },
-  'Polygon 2FD': { color: '#ef4444', height: 1.2, label: 'Zone Résidentielle A' },
-  'Polygon 2E6': { color: '#8b5cf6', height: 1.0, label: 'Marina' },
-  'Polygon 1D4': { color: '#22c55e', height: 1.4, label: 'Songon East-Side' },
-  'Polygon 1D2': { color: '#f97316', height: 1.1, label: 'Zone Résidentielle B' },
+  'Polygon 323': { color: '#6ee7b7', height: 1.6, label: 'Songon Extension' },
+  'Polygon 2FD': { color: '#fca5a5', height: 1.0, label: 'Zone Résidentielle A' },
+  'Polygon 2E6': { color: '#c4b5fd', height: 0.8, label: 'Marina' },
+  'Polygon 1D4': { color: '#86efac', height: 1.2, label: 'Songon East-Side' },
+  'Polygon 1D2': { color: '#fdba74', height: 0.9, label: 'Zone Résidentielle B' },
 };
 
 const MARKER_CONFIG: Record<string, string> = {
-  'PROJET MARINA': '#8b5cf6',
-  'Songon East-Side': '#22c55e',
-  'Terre de Songon': '#f97316',
-  'Songon Extension': '#10b981',
-  'Le Golf de Songon': '#3b82f6',
+  'PROJET MARINA': '#c4b5fd',
+  'Songon East-Side': '#86efac',
+  'Terre de Songon': '#fdba74',
+  'Songon Extension': '#6ee7b7',
+  'Le Golf de Songon': '#93c5fd',
 };
 
-// ─── Extruded Zone Component ───
+// ─── Extruded Zone (flat shading, clean edges) ───
 function ExtrudedZone({
-  coords,
-  config,
-  name,
-  placemark,
-  isSelected,
-  onSelect,
+  coords, config, name, placemark, isSelected, onSelect,
 }: {
   coords: [number, number][];
   config: { color: string; height: number; label: string };
@@ -52,33 +47,25 @@ function ExtrudedZone({
     return s;
   }, [coords]);
 
-  const extrudeSettings = useMemo(
-    () => ({
-      depth: config.height,
-      bevelEnabled: true,
-      bevelThickness: 0.03,
-      bevelSize: 0.02,
-      bevelSegments: 2,
-    }),
-    [config.height]
-  );
+  const extrudeSettings = useMemo(() => ({
+    depth: config.height,
+    bevelEnabled: false,
+  }), [config.height]);
 
-  const color = useMemo(() => new THREE.Color(config.color), [config.color]);
-  const hoverColor = useMemo(() => new THREE.Color(config.color).multiplyScalar(1.3), [config.color]);
+  const baseColor = useMemo(() => new THREE.Color(config.color), [config.color]);
+  const hoverColor = useMemo(() => new THREE.Color(config.color).multiplyScalar(1.15), [config.color]);
 
-  // Compute center for label
   const center = useMemo(() => {
     const cx = coords.reduce((s, [x]) => s + x, 0) / coords.length;
     const cz = coords.reduce((s, [, z]) => s + z, 0) / coords.length;
-    return [cx, config.height + 0.3, cz] as [number, number, number];
+    return [cx, config.height + 0.4, cz] as [number, number, number];
   }, [coords, config.height]);
 
   useFrame(() => {
     if (!meshRef.current) return;
     const mat = meshRef.current.material as THREE.MeshStandardMaterial;
-    const targetColor = hovered || isSelected ? hoverColor : color;
-    mat.color.lerp(targetColor, 0.1);
-    mat.opacity = THREE.MathUtils.lerp(mat.opacity, hovered || isSelected ? 0.85 : 0.65, 0.1);
+    const target = hovered || isSelected ? hoverColor : baseColor;
+    mat.color.lerp(target, 0.12);
   });
 
   return (
@@ -86,34 +73,23 @@ function ExtrudedZone({
       <mesh
         ref={meshRef}
         rotation={[-Math.PI / 2, 0, 0]}
-        onPointerEnter={(e) => {
-          e.stopPropagation();
-          setHovered(true);
-          document.body.style.cursor = 'pointer';
-        }}
-        onPointerLeave={() => {
-          setHovered(false);
-          document.body.style.cursor = 'default';
-        }}
-        onClick={(e) => {
-          e.stopPropagation();
-          onSelect(isSelected ? null : name);
-        }}
+        onPointerEnter={(e) => { e.stopPropagation(); setHovered(true); document.body.style.cursor = 'pointer'; }}
+        onPointerLeave={() => { setHovered(false); document.body.style.cursor = 'default'; }}
+        onClick={(e) => { e.stopPropagation(); onSelect(isSelected ? null : name); }}
         castShadow
         receiveShadow
       >
         <extrudeGeometry args={[shape, extrudeSettings]} />
         <meshStandardMaterial
-          color={color}
-          transparent
-          opacity={0.65}
-          roughness={0.4}
-          metalness={0.1}
+          color={baseColor}
+          roughness={0.85}
+          metalness={0}
+          flatShading
           side={THREE.DoubleSide}
         />
       </mesh>
 
-      {/* Zone edge outline */}
+      {/* Top edge outline */}
       <lineLoop rotation={[-Math.PI / 2, 0, 0]} position={[0, config.height + 0.01, 0]}>
         <bufferGeometry>
           <bufferAttribute
@@ -123,56 +99,41 @@ function ExtrudedZone({
             itemSize={3}
           />
         </bufferGeometry>
-        <lineBasicMaterial color={config.color} linewidth={2} transparent opacity={0.8} />
+        <lineBasicMaterial color="#94a3b8" linewidth={1} />
       </lineLoop>
 
-      {/* Hover/selected label */}
       {(hovered || isSelected) && (
         <Html position={center} center distanceFactor={15} style={{ pointerEvents: 'none' }}>
-          <div className="zone-3d-label">
-            {config.label}
-          </div>
+          <div className="iso-label">{config.label}</div>
         </Html>
       )}
 
-      {/* Info bubble on select */}
       {isSelected && (
         <Html position={center} center distanceFactor={12} style={{ pointerEvents: 'auto' }}>
-          <InfoBubble3D placemark={placemark} label={config.label} color={config.color} onClose={() => onSelect(null)} />
+          <IsoBubble placemark={placemark} label={config.label} color={config.color} onClose={() => onSelect(null)} />
         </Html>
       )}
     </group>
   );
 }
 
-// ─── 3D Info Bubble ───
-function InfoBubble3D({
-  placemark,
-  label,
-  color,
-  onClose,
-}: {
-  placemark: KmlPlacemark;
-  label: string;
-  color: string;
-  onClose: () => void;
+// ─── Info Bubble ───
+function IsoBubble({ placemark, label, color, onClose }: {
+  placemark: KmlPlacemark; label: string; color: string; onClose: () => void;
 }) {
   const info = getProjectInfo(placemark.name);
-
   return (
-    <div className="bubble-3d" onClick={(e) => e.stopPropagation()}>
-      <button className="bubble-3d-close" onClick={onClose}>×</button>
-      <div className="bubble-3d-header" style={{ borderBottomColor: color }}>
-        <span className="bubble-3d-badge" style={{ background: color }}>{placemark.category}</span>
-        <h3 className="bubble-3d-title">{label}</h3>
+    <div className="iso-bubble" onClick={(e) => e.stopPropagation()}>
+      <button className="iso-bubble-close" onClick={onClose}>×</button>
+      <div className="iso-bubble-header" style={{ borderBottomColor: color }}>
+        <span className="iso-bubble-badge" style={{ background: color, color: '#1e293b' }}>{placemark.category}</span>
+        <h3 className="iso-bubble-title">{label}</h3>
       </div>
-      <p className="bubble-3d-desc">{info.description}</p>
-      <div className="bubble-3d-footer">
-        <span className="bubble-3d-status" style={{ color }}>{info.status}</span>
+      <p className="iso-bubble-desc">{info.description}</p>
+      <div className="iso-bubble-footer">
+        <span className="iso-bubble-status" style={{ color }}>{info.status}</span>
         {info.link && (
-          <a href={info.link} target="_blank" rel="noopener noreferrer" className="bubble-3d-cta">
-            Découvrir
-          </a>
+          <a href={info.link} target="_blank" rel="noopener noreferrer" className="iso-bubble-cta">Découvrir</a>
         )}
       </div>
     </div>
@@ -196,64 +157,41 @@ function PerimeterOutline({ coords }: { coords: [number, number][] }) {
       ref={lineRef}
       object={new THREE.Line(
         new THREE.BufferGeometry(),
-        new THREE.LineDashedMaterial({ color: '#10b981', dashSize: 0.3, gapSize: 0.15, opacity: 0.6, transparent: true })
+        new THREE.LineDashedMaterial({ color: '#94a3b8', dashSize: 0.3, gapSize: 0.15, opacity: 0.5, transparent: true })
       )}
     />
   );
 }
 
-// ─── Pin Marker ───
-function PinMarker({
-  position,
-  color,
-  name,
-  placemark,
-  isSelected,
-  onSelect,
-}: {
-  position: [number, number, number];
-  color: string;
-  name: string;
-  placemark: KmlPlacemark;
-  isSelected: boolean;
-  onSelect: (name: string | null) => void;
+// ─── Pin Marker (clean minimal) ───
+function PinMarker({ position, color, name, placemark, isSelected, onSelect }: {
+  position: [number, number, number]; color: string; name: string;
+  placemark: KmlPlacemark; isSelected: boolean; onSelect: (name: string | null) => void;
 }) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <group position={position}>
-      {/* Pin pole */}
-      <mesh position={[0, 0.4, 0]}>
-        <cylinderGeometry args={[0.02, 0.02, 0.8, 8]} />
-        <meshStandardMaterial color="#ffffff" opacity={0.7} transparent />
+      <mesh position={[0, 0.35, 0]}>
+        <cylinderGeometry args={[0.015, 0.015, 0.7, 6]} />
+        <meshStandardMaterial color="#cbd5e1" flatShading />
       </mesh>
-      {/* Pin head */}
       <mesh
-        position={[0, 0.85, 0]}
-        onPointerEnter={(e) => {
-          e.stopPropagation();
-          setHovered(true);
-          document.body.style.cursor = 'pointer';
-        }}
-        onPointerLeave={() => {
-          setHovered(false);
-          document.body.style.cursor = 'default';
-        }}
-        onClick={(e) => {
-          e.stopPropagation();
-          onSelect(isSelected ? null : name);
-        }}
+        position={[0, 0.75, 0]}
+        onPointerEnter={(e) => { e.stopPropagation(); setHovered(true); document.body.style.cursor = 'pointer'; }}
+        onPointerLeave={() => { setHovered(false); document.body.style.cursor = 'default'; }}
+        onClick={(e) => { e.stopPropagation(); onSelect(isSelected ? null : name); }}
       >
-        <sphereGeometry args={[0.12, 16, 16]} />
-        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={hovered ? 0.5 : 0.2} />
+        <octahedronGeometry args={[0.1, 0]} />
+        <meshStandardMaterial color={color} flatShading emissive={color} emissiveIntensity={hovered ? 0.3 : 0.1} />
       </mesh>
 
       {(hovered || isSelected) && (
-        <Html position={[0, 1.2, 0]} center distanceFactor={15} style={{ pointerEvents: isSelected ? 'auto' : 'none' }}>
+        <Html position={[0, 1.1, 0]} center distanceFactor={15} style={{ pointerEvents: isSelected ? 'auto' : 'none' }}>
           {isSelected ? (
-            <InfoBubble3D placemark={placemark} label={name} color={color} onClose={() => onSelect(null)} />
+            <IsoBubble placemark={placemark} label={name} color={color} onClose={() => onSelect(null)} />
           ) : (
-            <div className="zone-3d-label">{name}</div>
+            <div className="iso-label">{name}</div>
           )}
         </Html>
       )}
@@ -261,29 +199,25 @@ function PinMarker({
   );
 }
 
-// ─── Ground Plane ───
+// ─── Ground (white maquette base) ───
 function GroundPlane() {
   return (
-    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.01, 0]} receiveShadow>
-      <planeGeometry args={[60, 60]} />
-      <meshStandardMaterial color="#1a2f22" roughness={0.9} metalness={0} />
-    </mesh>
+    <group>
+      {/* Main base */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.02, 0]} receiveShadow>
+        <planeGeometry args={[50, 50]} />
+        <meshStandardMaterial color="#f1f5f9" roughness={0.95} metalness={0} />
+      </mesh>
+      {/* Subtle base edge */}
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.05, 0]}>
+        <planeGeometry args={[52, 52]} />
+        <meshStandardMaterial color="#e2e8f0" roughness={1} metalness={0} />
+      </mesh>
+    </group>
   );
 }
 
-// ─── Scene Setup ───
-function SceneSetup() {
-  const { camera } = useThree();
-
-  useEffect(() => {
-    camera.position.set(8, 12, 8);
-    camera.lookAt(0, 0, 0);
-  }, [camera]);
-
-  return null;
-}
-
-// ─── Main 3D Component ───
+// ─── Main Component ───
 const MasterplanScene3D = () => {
   const [placemarks, setPlacemarks] = useState<KmlPlacemark[]>([]);
   const [selectedZone, setSelectedZone] = useState<string | null>(null);
@@ -291,36 +225,28 @@ const MasterplanScene3D = () => {
   useEffect(() => {
     fetch('/data/map_ogd.kml')
       .then((r) => r.text())
-      .then((text) => {
-        setPlacemarks(parseKml(text));
-      });
+      .then((text) => setPlacemarks(parseKml(text)));
   }, []);
 
-  const handleSelect = useCallback((name: string | null) => {
-    setSelectedZone(name);
-  }, []);
-
-  // Click on empty space to deselect
-  const handleCanvasClick = useCallback(() => {
-    setSelectedZone(null);
-  }, []);
+  const handleSelect = useCallback((name: string | null) => setSelectedZone(name), []);
+  const handleCanvasClick = useCallback(() => setSelectedZone(null), []);
 
   return (
-    <div className="relative flex-1 w-full h-full" style={{ background: '#0a1a0f' }}>
+    <div className="relative flex-1 w-full h-full" style={{ background: '#f8fafc' }}>
       <Canvas
         shadows
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: false }}
         onPointerMissed={handleCanvasClick}
       >
-        <SceneSetup />
-        <color attach="background" args={['#0a1a0f']} />
+        <OrthographicCamera makeDefault position={[15, 15, 15]} zoom={45} near={0.1} far={200} />
+        <color attach="background" args={['#f8fafc']} />
 
-        {/* Lighting */}
-        <ambientLight intensity={0.4} />
+        {/* Soft even lighting for maquette feel */}
+        <ambientLight intensity={0.7} />
         <directionalLight
-          position={[10, 15, 5]}
-          intensity={1.2}
+          position={[10, 20, 10]}
+          intensity={0.8}
           castShadow
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
@@ -331,31 +257,24 @@ const MasterplanScene3D = () => {
           shadow-camera-top={20}
           shadow-camera-bottom={-20}
         />
-        <directionalLight position={[-5, 8, -10]} intensity={0.3} color="#10b981" />
+        <directionalLight position={[-8, 12, -8]} intensity={0.3} color="#e0e7ff" />
 
-        {/* Ground */}
         <GroundPlane />
-        <ContactShadows position={[0, 0, 0]} opacity={0.3} scale={50} blur={2} far={15} />
 
-        {/* Grid helper for architectural feel */}
-        <gridHelper args={[60, 60, '#1e3a2a', '#152820']} position={[0, 0.01, 0]} />
+        {/* Subtle grid */}
+        <gridHelper args={[50, 50, '#cbd5e1', '#e2e8f0']} position={[0, 0.01, 0]} />
 
-        {/* Render zones */}
         {placemarks.map((pm) => {
           if (pm.type === 'polygon') {
             if (pm.name === 'Polygon 356') {
-              const projCoords = coordsToXZ(pm.coordinates as [number, number][]);
-              return <PerimeterOutline key={pm.id} coords={projCoords} />;
+              return <PerimeterOutline key={pm.id} coords={coordsToXZ(pm.coordinates as [number, number][])} />;
             }
-
             const config = ZONE_CONFIG[pm.name];
             if (!config) return null;
-
-            const projCoords = coordsToXZ(pm.coordinates as [number, number][]);
             return (
               <ExtrudedZone
                 key={pm.id}
-                coords={projCoords}
+                coords={coordsToXZ(pm.coordinates as [number, number][])}
                 config={config}
                 name={pm.name}
                 placemark={pm}
@@ -364,17 +283,14 @@ const MasterplanScene3D = () => {
               />
             );
           }
-
           if (pm.type === 'point') {
             const [lat, lng] = pm.coordinates as [number, number];
             const [x, z] = latLngToXZ(lat, lng);
-            const color = MARKER_CONFIG[pm.name] || '#10b981';
-
             return (
               <PinMarker
                 key={pm.id}
                 position={[x, 0, z]}
-                color={color}
+                color={MARKER_CONFIG[pm.name] || '#86efac'}
                 name={pm.name}
                 placemark={pm}
                 isSelected={selectedZone === pm.name}
@@ -382,19 +298,17 @@ const MasterplanScene3D = () => {
               />
             );
           }
-
           return null;
         })}
 
-        {/* Camera controls */}
         <OrbitControls
           enableDamping
           dampingFactor={0.05}
-          minDistance={5}
-          maxDistance={25}
-          maxPolarAngle={Math.PI / 2.2}
+          minZoom={20}
+          maxZoom={100}
+          maxPolarAngle={Math.PI / 2.5}
           minPolarAngle={Math.PI / 6}
-          enablePan={false}
+          enablePan
           target={[0, 0, 0]}
         />
       </Canvas>
