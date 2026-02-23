@@ -232,64 +232,79 @@
   border-top-color: rgba(10, 26, 15, 0.9) !important;
 }
 
-/* ─── Custom pins ─── */
-.masterplan-pin {
+/* ─── Premium architectural markers ─── */
+.masterplan-marker {
   background: none !important;
   border: none !important;
 }
 
-.pin-outer {
+.marker-shell {
   position: relative;
-  width: 28px;
-  height: 28px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-}
-
-.pin-inner {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-  position: relative;
-  z-index: 2;
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  gap: 2px;
   cursor: pointer;
 }
 
-.pin-outer:hover .pin-inner {
-  transform: scale(1.25);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45), 0 0 12px var(--pin-color, rgba(16, 185, 129, 0.4));
-}
-
-@keyframes pin-pulse {
-  0% { transform: scale(1); opacity: 0.5; }
-  50% { opacity: 0.25; }
-  100% { transform: scale(3); opacity: 0; }
-}
-
-.pin-pulse {
+.marker-glow {
   position: absolute;
-  width: 24px;
-  height: 24px;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  transform: translate(-50%, -55%);
   border-radius: 50%;
-  opacity: 0;
-  z-index: 1;
-  animation: pin-pulse 2s ease-out infinite;
+  background: var(--marker-color);
+  opacity: 0.08;
+  filter: blur(6px);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+  pointer-events: none;
 }
 
-@keyframes pin-bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+.marker-body {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(10, 26, 15, 0.88);
+  border: 1.5px solid var(--marker-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--marker-color);
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(8px);
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-.pin-outer:hover {
-  animation: pin-bounce 0.6s ease-in-out;
+.marker-abbr {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--marker-color);
+  text-transform: uppercase;
+  opacity: 0.7;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+/* Hover — subtle scale + glow */
+.marker-shell:hover .marker-body {
+  transform: scale(1.12);
+  background: rgba(10, 26, 15, 0.95);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 0 10px color-mix(in srgb, var(--marker-color) 25%, transparent);
+}
+
+.marker-shell:hover .marker-glow {
+  opacity: 0.18;
+  filter: blur(8px);
+}
+
+.marker-shell:hover .marker-abbr {
+  opacity: 1;
 }
 
 /* ─── Premium info bubble (popup) ─── */
