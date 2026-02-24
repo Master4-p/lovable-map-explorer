@@ -106,14 +106,15 @@ const InteractiveMap = () => {
     );
     map.setMaxBounds(bounds);
 
-    // Satellite tiles — desaturated via CSS
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-      maxZoom: 19,
+    // Static satellite image overlay — no dynamic tiles
+    const imageBounds = L.latLngBounds(
+      L.latLng(5.295, -4.310),  // SW corner
+      L.latLng(5.365, -4.235)   // NE corner
+    );
+    L.imageOverlay('/images/satellite-base.png', imageBounds, {
+      opacity: 1,
+      className: 'satellite-base-image',
     }).addTo(map);
-
-    // Custom zoom control — minimal, bottom-right
-    const zoomControl = L.control.zoom({ position: 'bottomright' });
-    zoomControl.addTo(map);
 
     mapInstance.current = map;
 
