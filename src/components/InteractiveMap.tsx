@@ -204,27 +204,6 @@ const InteractiveMap = () => {
               this.getElement()?.classList.remove('zone-hover');
             });
 
-            // Click — show info bubble (one at a time)
-            poly.on('click', (e) => {
-              L.DomEvent.stopPropagation(e);
-              if (activePopupRef.current) {
-                map.closePopup(activePopupRef.current);
-              }
-              const popup = L.popup({
-                maxWidth: 300,
-                minWidth: 260,
-                className: 'masterplan-popup',
-                closeButton: true,
-                autoPan: true,
-                autoPanPaddingTopLeft: L.point(50, 50),
-                autoPanPaddingBottomRight: L.point(50, 50),
-              })
-                .setLatLng(zoneCenter)
-                .setContent(createInfoBubble(pm))
-                .openOn(map);
-              activePopupRef.current = popup;
-            });
-
             poly.addTo(map);
 
           } else if (pm.type === 'point') {
@@ -250,23 +229,6 @@ const InteractiveMap = () => {
 
             const marker = L.marker(coord, { icon });
 
-            marker.on('click', (e) => {
-              L.DomEvent.stopPropagation(e);
-              if (activePopupRef.current) {
-                map.closePopup(activePopupRef.current);
-              }
-              const popup = L.popup({
-                maxWidth: 300,
-                minWidth: 260,
-                className: 'masterplan-popup',
-                closeButton: true,
-                autoPan: true,
-              })
-                .setLatLng(coord)
-                .setContent(createInfoBubble(pm))
-                .openOn(map);
-              activePopupRef.current = popup;
-            });
 
             marker.bindTooltip(pm.name, {
               direction: 'top',
