@@ -106,14 +106,9 @@ const InteractiveMap = () => {
     );
     map.setMaxBounds(bounds);
 
-    // Static satellite image overlay — no dynamic tiles
-    const imageBounds = L.latLngBounds(
-      L.latLng(5.295, -4.310),  // SW corner
-      L.latLng(5.365, -4.235)   // NE corner
-    );
-    L.imageOverlay('/images/satellite-base.png', imageBounds, {
-      opacity: 1,
-      className: 'satellite-base-image',
+    // Satellite tiles — desaturated via CSS for premium look
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 19,
     }).addTo(map);
 
     mapInstance.current = map;
@@ -145,7 +140,6 @@ const InteractiveMap = () => {
                 fillColor: 'transparent',
                 fillOpacity: 0,
                 opacity: 0.6,
-                className: 'perimeter-animate',
               });
 
               // Tooltip at northeast on hover

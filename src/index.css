@@ -89,14 +89,9 @@
    MASTERPLAN MAP — Premium aerial rendering
    ═══════════════════════════════════════════════════ */
 
-/* Desaturate static satellite image for branded look */
-.satellite-base-image {
-  filter: saturate(0.45) brightness(0.72) contrast(1.15);
-}
-
-/* Hide tile pane if any */
+/* Desaturate satellite tiles for branded look */
 .masterplan-container .leaflet-tile-pane {
-  display: none !important;
+  filter: saturate(0.4) brightness(0.75) contrast(1.15);
 }
 
 .masterplan-container .leaflet-container {
@@ -148,25 +143,7 @@
   pointer-events: none;
 }
 
-/* ─── Animated perimeter border ─── */
-@keyframes perimeter-dash {
-  to { stroke-dashoffset: -40; }
-}
-
-@keyframes perimeter-glow {
-  0%, 100% {
-    stroke-opacity: 0.45;
-    filter: drop-shadow(0 0 2px rgba(16, 185, 129, 0.2));
-  }
-  50% {
-    stroke-opacity: 0.85;
-    filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.5));
-  }
-}
-
-.perimeter-animate {
-  animation: perimeter-dash 0.8s linear infinite, perimeter-glow 4s ease-in-out infinite;
-}
+/* ─── Perimeter border — static dashed line ─── */
 
 /* ─── One Green Dev tooltip ─── */
 .ogd-tooltip {
