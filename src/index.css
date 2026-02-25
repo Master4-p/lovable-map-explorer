@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,30 +7,30 @@
 @layer base {
   :root {
     --background: 150 20% 4%;
-    --foreground: 140 10% 90%;
-    --card: 150 15% 8%;
-    --card-foreground: 140 10% 90%;
-    --popover: 150 15% 8%;
-    --popover-foreground: 140 10% 90%;
-    --primary: 160 84% 39%;
-    --primary-foreground: 150 20% 4%;
-    --secondary: 150 12% 14%;
-    --secondary-foreground: 140 10% 90%;
-    --muted: 150 10% 12%;
+    --foreground: 40 20% 92%;
+    --card: 150 18% 7%;
+    --card-foreground: 40 20% 92%;
+    --popover: 150 18% 7%;
+    --popover-foreground: 40 20% 92%;
+    --primary: 160 60% 28%;
+    --primary-foreground: 40 20% 92%;
+    --secondary: 150 12% 12%;
+    --secondary-foreground: 40 20% 92%;
+    --muted: 150 10% 10%;
     --muted-foreground: 150 8% 55%;
-    --accent: 160 84% 39%;
-    --accent-foreground: 150 20% 4%;
+    --accent: 160 60% 28%;
+    --accent-foreground: 40 20% 92%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 150 10% 16%;
     --input: 150 10% 16%;
-    --ring: 160 84% 39%;
+    --ring: 160 60% 28%;
     --radius: 0.75rem;
     --font-display: 'Playfair Display', serif;
-    --font-body: 'DM Sans', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
     --shadow-card: 0 4px 24px -4px hsl(150 20% 4% / 0.3);
     --shadow-popup: 0 12px 40px -8px hsl(150 20% 4% / 0.4);
-    --shadow-hover: 0 8px 32px -6px hsl(160 84% 39% / 0.25);
+    --shadow-hover: 0 8px 32px -6px hsl(160 60% 28% / 0.25);
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -43,38 +43,48 @@
 
   .dark {
     --background: 150 20% 4%;
-    --foreground: 140 10% 90%;
-    --card: 150 15% 8%;
-    --card-foreground: 140 10% 90%;
-    --popover: 150 15% 8%;
-    --popover-foreground: 140 10% 90%;
-    --primary: 160 84% 39%;
-    --primary-foreground: 150 20% 4%;
-    --secondary: 150 12% 14%;
-    --secondary-foreground: 140 10% 90%;
-    --muted: 150 10% 12%;
+    --foreground: 40 20% 92%;
+    --card: 150 18% 7%;
+    --card-foreground: 40 20% 92%;
+    --popover: 150 18% 7%;
+    --popover-foreground: 40 20% 92%;
+    --primary: 160 60% 28%;
+    --primary-foreground: 40 20% 92%;
+    --secondary: 150 12% 12%;
+    --secondary-foreground: 40 20% 92%;
+    --muted: 150 10% 10%;
     --muted-foreground: 150 8% 55%;
-    --accent: 160 84% 39%;
-    --accent-foreground: 150 20% 4%;
+    --accent: 160 60% 28%;
+    --accent-foreground: 40 20% 92%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 150 10% 16%;
     --input: 150 10% 16%;
-    --ring: 160 84% 39%;
+    --ring: 160 60% 28%;
     --sidebar-background: 150 15% 6%;
     --sidebar-foreground: 140 10% 90%;
-    --sidebar-primary: 160 84% 39%;
-    --sidebar-primary-foreground: 150 20% 4%;
+    --sidebar-primary: 160 60% 28%;
+    --sidebar-primary-foreground: 40 20% 92%;
     --sidebar-accent: 150 10% 12%;
     --sidebar-accent-foreground: 140 10% 90%;
     --sidebar-border: 150 10% 16%;
-    --sidebar-ring: 160 84% 39%;
+    --sidebar-ring: 160 60% 28%;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    margin: 0;
+    padding: 0;
+  }
+  html, body, #root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: transparent;
   }
   body {
     @apply bg-background text-foreground;
@@ -86,17 +96,17 @@
 }
 
 /* ═══════════════════════════════════════════════════
-   MASTERPLAN MAP — Premium aerial rendering
+   MASTERPLAN MAP — One Green Dev Premium Charter
    ═══════════════════════════════════════════════════ */
 
-/* Desaturate satellite tiles for branded look */
+/* Desaturate satellite tiles for architectural rendering */
 .masterplan-container .leaflet-tile-pane {
-  filter: saturate(0.4) brightness(0.75) contrast(1.15);
+  filter: saturate(0.35) brightness(0.7) contrast(1.15);
 }
 
 .masterplan-container .leaflet-container {
   font-family: var(--font-body) !important;
-  background: #0a0f0d !important;
+  background: #0a1a0f !important;
   cursor: default;
 }
 
@@ -108,78 +118,79 @@
 
 /* ─── Zone polygons ─── */
 .masterplan-zone {
-  transition: fill-opacity 0.4s ease, stroke-width 0.3s ease, filter 0.4s ease, stroke-opacity 0.3s ease;
+  transition: fill-opacity 0.5s ease-in-out, stroke-width 0.3s ease-in-out, filter 0.5s ease-in-out, stroke-opacity 0.3s ease-in-out;
   cursor: pointer;
   transform-origin: center;
 }
 
 .masterplan-zone.zone-hover {
-  filter: brightness(1.4) drop-shadow(0 0 12px rgba(16, 185, 129, 0.4));
+  filter: brightness(1.3) drop-shadow(0 0 10px rgba(16, 120, 80, 0.35));
   stroke-opacity: 1;
 }
 
 @keyframes zone-glow-pulse {
-  0%, 100% { filter: brightness(1.4) drop-shadow(0 0 8px rgba(16, 185, 129, 0.3)); }
-  50% { filter: brightness(1.5) drop-shadow(0 0 16px rgba(16, 185, 129, 0.5)); }
+  0%, 100% { filter: brightness(1.3) drop-shadow(0 0 6px rgba(16, 120, 80, 0.25)); }
+  50% { filter: brightness(1.4) drop-shadow(0 0 14px rgba(16, 120, 80, 0.4)); }
 }
 
 .masterplan-zone.zone-hover {
-  animation: zone-glow-pulse 1.8s ease-in-out infinite;
+  animation: zone-glow-pulse 2.2s ease-in-out infinite;
 }
 
 /* ─── Zone hover tooltip ─── */
 .zone-tooltip {
-  background: rgba(10, 26, 15, 0.9) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  color: #e0ebe4 !important;
-  font-family: 'DM Sans', sans-serif !important;
-  font-size: 11px !important;
+  background: rgba(10, 26, 15, 0.92) !important;
+  border: 1px solid rgba(255, 248, 235, 0.12) !important;
+  color: #fff8eb !important;
+  font-family: 'Playfair Display', serif !important;
+  font-size: 12px !important;
   font-weight: 600 !important;
+  letter-spacing: 1.5px !important;
   text-transform: uppercase !important;
-  letter-spacing: 1px !important;
-  padding: 5px 12px !important;
-  border-radius: 6px !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+  padding: 6px 14px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5) !important;
   pointer-events: none;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
-
-/* ─── Perimeter border — static dashed line ─── */
 
 /* ─── One Green Dev tooltip ─── */
 .ogd-tooltip {
-  background: rgba(10, 26, 15, 0.92) !important;
-  border: 1px solid rgba(16, 185, 129, 0.5) !important;
-  color: #10b981 !important;
+  background: rgba(10, 26, 15, 0.94) !important;
+  border: 1px solid rgba(16, 120, 80, 0.4) !important;
+  color: #d4e8dc !important;
   font-family: 'Playfair Display', serif !important;
   font-size: 14px !important;
   font-weight: 600 !important;
-  letter-spacing: 2px !important;
+  letter-spacing: 2.5px !important;
   text-transform: uppercase !important;
-  padding: 8px 18px !important;
-  border-radius: 6px !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(16, 185, 129, 0.15) !important;
-  backdrop-filter: blur(8px);
+  padding: 10px 22px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.5), 0 0 10px rgba(16, 120, 80, 0.1) !important;
+  backdrop-filter: blur(12px);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 .ogd-tooltip::before {
-  border-top-color: rgba(10, 26, 15, 0.92) !important;
+  border-top-color: rgba(10, 26, 15, 0.94) !important;
 }
 
 /* ─── Pin tooltip ─── */
 .pin-tooltip {
-  background: rgba(10, 26, 15, 0.9) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  color: #e0ebe4 !important;
-  font-family: 'DM Sans', sans-serif !important;
-  font-size: 12px !important;
+  background: rgba(10, 26, 15, 0.92) !important;
+  border: 1px solid rgba(255, 248, 235, 0.1) !important;
+  color: #fff8eb !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 11px !important;
   font-weight: 500 !important;
-  padding: 5px 12px !important;
-  border-radius: 6px !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+  padding: 6px 14px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .pin-tooltip::before {
-  border-top-color: rgba(10, 26, 15, 0.9) !important;
+  border-top-color: rgba(10, 26, 15, 0.92) !important;
 }
 
 /* ─── Premium architectural markers ─── */
@@ -206,17 +217,17 @@
   transform: translate(-50%, -55%);
   border-radius: 50%;
   background: var(--marker-color);
-  opacity: 0.08;
+  opacity: 0.06;
   filter: blur(6px);
-  transition: opacity 0.3s ease, filter 0.3s ease;
+  transition: opacity 0.4s ease-in-out, filter 0.4s ease-in-out;
   pointer-events: none;
 }
 
 .marker-body {
   width: 30px;
   height: 30px;
-  border-radius: 8px;
-  background: rgba(10, 26, 15, 0.88);
+  border-radius: 10px;
+  background: rgba(10, 26, 15, 0.9);
   border: 1.5px solid var(--marker-color);
   display: flex;
   align-items: center;
@@ -224,20 +235,20 @@
   color: var(--marker-color);
   position: relative;
   z-index: 2;
-  backdrop-filter: blur(8px);
-  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease-in-out, background 0.3s ease-in-out, border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 }
 
 .marker-abbr {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.5px;
   color: var(--marker-color);
   text-transform: uppercase;
-  opacity: 0.7;
-  transition: opacity 0.25s ease;
+  opacity: 0.6;
+  transition: opacity 0.3s ease-in-out;
   pointer-events: none;
 }
 
@@ -245,11 +256,11 @@
 .marker-shell:hover .marker-body {
   transform: scale(1.12);
   background: rgba(10, 26, 15, 0.95);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35), 0 0 10px color-mix(in srgb, var(--marker-color) 25%, transparent);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4), 0 0 8px color-mix(in srgb, var(--marker-color) 20%, transparent);
 }
 
 .marker-shell:hover .marker-glow {
-  opacity: 0.18;
+  opacity: 0.15;
   filter: blur(8px);
 }
 
@@ -257,15 +268,16 @@
   opacity: 1;
 }
 
-/* ─── Premium info bubble (popup) ─── */
+/* ─── Premium info bubble (popup) — Glassmorphism ─── */
 .masterplan-popup .leaflet-popup-content-wrapper {
   border-radius: 12px !important;
-  box-shadow: 0 16px 48px -8px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(16, 185, 129, 0.1) !important;
+  box-shadow: 0 20px 60px -12px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 248, 235, 0.08) !important;
   padding: 0 !important;
   overflow: hidden;
-  background: #0d1a12 !important;
-  border: 1px solid rgba(16, 185, 129, 0.15) !important;
-  backdrop-filter: blur(20px);
+  background: rgba(10, 26, 15, 0.85) !important;
+  border: 1px solid rgba(255, 248, 235, 0.1) !important;
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
 }
 
 .masterplan-popup .leaflet-popup-content {
@@ -275,37 +287,37 @@
 }
 
 .masterplan-popup .leaflet-popup-tip {
-  background: #0d1a12 !important;
-  border: 1px solid rgba(16, 185, 129, 0.15) !important;
+  background: rgba(10, 26, 15, 0.85) !important;
+  border: 1px solid rgba(255, 248, 235, 0.08) !important;
   box-shadow: none !important;
 }
 
 .masterplan-popup .leaflet-popup-close-button {
   z-index: 10 !important;
-  width: 26px !important;
-  height: 26px !important;
+  width: 28px !important;
+  height: 28px !important;
   font-size: 16px !important;
-  color: rgba(255, 255, 255, 0.5) !important;
+  color: rgba(255, 248, 235, 0.4) !important;
   top: 8px !important;
   right: 8px !important;
-  background: rgba(10, 26, 15, 0.8) !important;
+  background: rgba(10, 26, 15, 0.7) !important;
   border-radius: 50% !important;
   display: flex !important;
   align-items: center;
   justify-content: center;
-  line-height: 26px !important;
-  transition: color 0.2s, background 0.2s;
+  line-height: 28px !important;
+  transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
   backdrop-filter: blur(8px);
 }
 
 .masterplan-popup .leaflet-popup-close-button:hover {
-  color: #ffffff !important;
-  background: rgba(16, 185, 129, 0.3) !important;
+  color: #fff8eb !important;
+  background: rgba(16, 120, 80, 0.3) !important;
 }
 
 /* Bubble inner structure */
 .masterplan-bubble {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .bubble-image {
@@ -319,7 +331,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(0.8) brightness(0.9);
+  filter: saturate(0.7) brightness(0.85);
 }
 
 .bubble-image-overlay {
@@ -332,13 +344,14 @@
 }
 
 .bubble-badge {
-  color: white;
-  font-size: 10px;
+  color: #fff8eb;
+  font-size: 9px;
   font-weight: 600;
-  padding: 2px 10px;
+  padding: 3px 10px;
   border-radius: 20px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .bubble-content {
@@ -347,18 +360,20 @@
 
 .bubble-title {
   font-family: 'Playfair Display', serif;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   margin: 0 0 6px;
-  color: #ffffff;
+  color: #fff8eb;
   line-height: 1.3;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .bubble-desc {
   font-size: 11.5px;
-  color: #8aa696;
-  margin: 0 0 12px;
-  line-height: 1.5;
+  color: #a3bfad;
+  margin: 0 0 14px;
+  line-height: 1.6;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .bubble-footer {
@@ -373,6 +388,7 @@
   gap: 6px;
   font-size: 11px;
   font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .bubble-dot {
@@ -385,11 +401,12 @@
   font-size: 11px;
   font-weight: 600;
   color: #0a1a0f;
-  background: #10b981;
-  padding: 5px 14px;
+  background: linear-gradient(135deg, hsl(160 60% 28%), hsl(155 50% 35%));
+  padding: 6px 16px;
   border-radius: 20px;
   text-decoration: none;
-  transition: opacity 0.2s, transform 0.2s;
+  font-family: 'Montserrat', sans-serif;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .bubble-cta:hover {
@@ -399,6 +416,5 @@
 
 /* ─── Route lines ─── */
 .masterplan-route {
-  opacity: 0.6;
+  opacity: 0.5;
 }
-
