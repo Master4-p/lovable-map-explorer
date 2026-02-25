@@ -6,44 +6,44 @@ import { getProjectInfo } from '@/lib/projectData';
 
 // Premium zone colors — distinct, intentional palette
 const ZONE_STYLES: Record<string, { fill: string; border: string; label: string; interactive?: boolean }> = {
-  'Polygon 323': { fill: 'rgba(16, 120, 80, 0.40)', border: '#0d6b4a', label: 'Songon Extension' },
-  'Polygon 2FD': { fill: 'rgba(180, 140, 60, 0.40)', border: '#8a6d2f', label: 'Zone Résidentielle A' },
-  'Polygon 2E6': { fill: 'rgba(20, 100, 70, 0.40)', border: '#146446', label: 'Marina', interactive: false },
-  'Polygon 1D4': { fill: 'rgba(80, 130, 100, 0.40)', border: '#3d7a5a', label: 'Songon East-Side' },
-  'Polygon 1D2': { fill: 'rgba(55, 90, 65, 0.40)', border: '#375a41', label: 'Zone Résidentielle B', interactive: false },
+  'Polygon 323': { fill: 'rgba(212, 175, 55, 0.40)', border: '#d4af37', label: 'Songon Extension' },
+  'Polygon 2FD': { fill: 'rgba(180, 100, 60, 0.40)', border: '#b4643c', label: 'Zone Résidentielle A' },
+  'Polygon 2E6': { fill: 'rgba(140, 160, 200, 0.35)', border: '#8ca0c8', label: 'Marina', interactive: false },
+  'Polygon 1D4': { fill: 'rgba(200, 160, 120, 0.40)', border: '#c8a078', label: 'Songon East-Side' },
+  'Polygon 1D2': { fill: 'rgba(160, 140, 150, 0.30)', border: '#a08c96', label: 'Zone Résidentielle B', interactive: false },
 };
 
 // Marker config — color, category icon SVG, abbreviation
 const MARKER_CONFIG: Record<string, { color: string; icon: string; abbr: string }> = {
   'PROJET MARINA': {
-    color: '#146446',
+    color: '#8ca0c8',
     abbr: 'M',
     icon: '<path d="M3 18V12C3 12 5 8 12 8C19 8 21 12 21 12V18" stroke-width="1.5" stroke-linecap="round"/><path d="M6 18V14" stroke-width="1.5"/><path d="M12 18V10" stroke-width="1.5"/><path d="M18 18V14" stroke-width="1.5"/>',
   },
   'Songon East-Side': {
-    color: '#3d7a5a',
+    color: '#c8a078',
     abbr: 'SE',
     icon: '<rect x="4" y="8" width="6" height="10" rx="1" stroke-width="1.5"/><rect x="14" y="5" width="6" height="13" rx="1" stroke-width="1.5"/><line x1="2" y1="18" x2="22" y2="18" stroke-width="1.5"/>',
   },
   'Terre de Songon': {
-    color: '#8a6d2f',
+    color: '#b4643c',
     abbr: 'TS',
     icon: '<rect x="4" y="8" width="16" height="10" rx="1" stroke-width="1.5"/><path d="M4 8L12 3L20 8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="18" x2="12" y2="12" stroke-width="1.5"/>',
   },
   'Songon Extension': {
-    color: '#0d6b4a',
+    color: '#d4af37',
     abbr: 'EX',
     icon: '<circle cx="12" cy="12" r="3" stroke-width="1.5"/><path d="M12 2V5" stroke-width="1.5" stroke-linecap="round"/><path d="M12 19V22" stroke-width="1.5" stroke-linecap="round"/><path d="M2 12H5" stroke-width="1.5" stroke-linecap="round"/><path d="M19 12H22" stroke-width="1.5" stroke-linecap="round"/>',
   },
   'Le Golf de Songon': {
-    color: '#2d7a54',
+    color: '#e8c96a',
     abbr: 'G',
     icon: '<circle cx="12" cy="8" r="2" stroke-width="1.5"/><path d="M12 10V18" stroke-width="1.5" stroke-linecap="round"/><path d="M8 18C8 18 10 16 12 18C14 20 16 18 16 18" stroke-width="1.5" stroke-linecap="round"/>',
   },
 };
 
 function getZoneStyle(name: string) {
-  return ZONE_STYLES[name] || { fill: 'rgba(40, 70, 50, 0.40)', border: '#284632', label: name, interactive: true };
+  return ZONE_STYLES[name] || { fill: 'rgba(160, 140, 130, 0.35)', border: '#a08c82', label: name, interactive: true };
 }
 
 function createInfoBubble(placemark: KmlPlacemark): string {
