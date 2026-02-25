@@ -6,44 +6,44 @@ import { getProjectInfo } from '@/lib/projectData';
 
 // Premium zone colors — distinct, intentional palette
 const ZONE_STYLES: Record<string, { fill: string; border: string; label: string }> = {
-  'Polygon 323': { fill: 'rgba(16, 185, 129, 0.28)', border: '#0d9668', label: 'Songon Extension' },
-  'Polygon 2FD': { fill: 'rgba(220, 38, 38, 0.25)', border: '#b91c1c', label: 'Zone Résidentielle A' },
-  'Polygon 2E6': { fill: 'rgba(139, 92, 246, 0.30)', border: '#7c3aed', label: 'Marina' },
-  'Polygon 1D4': { fill: 'rgba(34, 197, 94, 0.25)', border: '#16a34a', label: 'Songon East-Side' },
-  'Polygon 1D2': { fill: 'rgba(249, 115, 22, 0.28)', border: '#ea580c', label: 'Zone Résidentielle B' },
+  'Polygon 323': { fill: 'rgba(16, 120, 80, 0.40)', border: '#0d6b4a', label: 'Songon Extension' },
+  'Polygon 2FD': { fill: 'rgba(45, 80, 60, 0.40)', border: '#2d503c', label: 'Zone Résidentielle A' },
+  'Polygon 2E6': { fill: 'rgba(20, 100, 70, 0.40)', border: '#146446', label: 'Marina' },
+  'Polygon 1D4': { fill: 'rgba(30, 110, 75, 0.40)', border: '#1e6e4b', label: 'Songon East-Side' },
+  'Polygon 1D2': { fill: 'rgba(55, 90, 65, 0.40)', border: '#375a41', label: 'Zone Résidentielle B' },
 };
 
 // Marker config — color, category icon SVG, abbreviation
 const MARKER_CONFIG: Record<string, { color: string; icon: string; abbr: string }> = {
   'PROJET MARINA': {
-    color: '#8b5cf6',
+    color: '#146446',
     abbr: 'M',
     icon: '<path d="M3 18V12C3 12 5 8 12 8C19 8 21 12 21 12V18" stroke-width="1.5" stroke-linecap="round"/><path d="M6 18V14" stroke-width="1.5"/><path d="M12 18V10" stroke-width="1.5"/><path d="M18 18V14" stroke-width="1.5"/>',
   },
   'Songon East-Side': {
-    color: '#22c55e',
+    color: '#1e6e4b',
     abbr: 'SE',
     icon: '<rect x="4" y="8" width="6" height="10" rx="1" stroke-width="1.5"/><rect x="14" y="5" width="6" height="13" rx="1" stroke-width="1.5"/><line x1="2" y1="18" x2="22" y2="18" stroke-width="1.5"/>',
   },
   'Terre de Songon': {
-    color: '#f97316',
+    color: '#375a41',
     abbr: 'TS',
     icon: '<rect x="4" y="8" width="16" height="10" rx="1" stroke-width="1.5"/><path d="M4 8L12 3L20 8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="18" x2="12" y2="12" stroke-width="1.5"/>',
   },
   'Songon Extension': {
-    color: '#10b981',
+    color: '#0d6b4a',
     abbr: 'EX',
     icon: '<circle cx="12" cy="12" r="3" stroke-width="1.5"/><path d="M12 2V5" stroke-width="1.5" stroke-linecap="round"/><path d="M12 19V22" stroke-width="1.5" stroke-linecap="round"/><path d="M2 12H5" stroke-width="1.5" stroke-linecap="round"/><path d="M19 12H22" stroke-width="1.5" stroke-linecap="round"/>',
   },
   'Le Golf de Songon': {
-    color: '#3b82f6',
+    color: '#2d7a54',
     abbr: 'G',
     icon: '<circle cx="12" cy="8" r="2" stroke-width="1.5"/><path d="M12 10V18" stroke-width="1.5" stroke-linecap="round"/><path d="M8 18C8 18 10 16 12 18C14 20 16 18 16 18" stroke-width="1.5" stroke-linecap="round"/>',
   },
 };
 
 function getZoneStyle(name: string) {
-  return ZONE_STYLES[name] || { fill: 'rgba(107, 114, 128, 0.2)', border: '#6b7280', label: name };
+  return ZONE_STYLES[name] || { fill: 'rgba(40, 70, 50, 0.40)', border: '#284632', label: name };
 }
 
 function createInfoBubble(placemark: KmlPlacemark): string {
@@ -134,7 +134,7 @@ const InteractiveMap = () => {
             // Global perimeter — dashed outline, no fill
             if (pm.name === 'Polygon 356') {
               const perimeterPoly = L.polygon(coords, {
-                color: '#10b981',
+                color: '#0d6b4a',
                 weight: 2,
                 dashArray: '12 8',
                 fillColor: 'transparent',
@@ -188,9 +188,9 @@ const InteractiveMap = () => {
               permanent: false,
             });
 
-            // Hover highlight
+            // Hover highlight — opacity 40% → 70%
             poly.on('mouseover', function () {
-              this.setStyle({ weight: 3.5, opacity: 1, fillOpacity: 1.4 });
+              this.setStyle({ weight: 3, opacity: 1, fillOpacity: 1.75 });
               this.getElement()?.classList.add('zone-hover');
               this.bringToFront();
             });
@@ -274,7 +274,7 @@ const InteractiveMap = () => {
           } else if (pm.type === 'linestring') {
             const coords = pm.coordinates as [number, number][];
             const line = L.polyline(coords, {
-              color: '#7a5c8e',
+              color: '#375a41',
               weight: 2,
               opacity: 0.6,
               dashArray: '6 4',
