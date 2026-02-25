@@ -5,12 +5,12 @@ import { parseKml, KmlPlacemark } from '@/lib/kmlParser';
 import { getProjectInfo } from '@/lib/projectData';
 
 // Premium zone colors — distinct, intentional palette
-const ZONE_STYLES: Record<string, { fill: string; border: string; label: string }> = {
+const ZONE_STYLES: Record<string, { fill: string; border: string; label: string; interactive?: boolean }> = {
   'Polygon 323': { fill: 'rgba(16, 120, 80, 0.40)', border: '#0d6b4a', label: 'Songon Extension' },
-  'Polygon 2FD': { fill: 'rgba(45, 80, 60, 0.40)', border: '#2d503c', label: 'Zone Résidentielle A' },
-  'Polygon 2E6': { fill: 'rgba(20, 100, 70, 0.40)', border: '#146446', label: 'Marina' },
-  'Polygon 1D4': { fill: 'rgba(30, 110, 75, 0.40)', border: '#1e6e4b', label: 'Songon East-Side' },
-  'Polygon 1D2': { fill: 'rgba(55, 90, 65, 0.40)', border: '#375a41', label: 'Zone Résidentielle B' },
+  'Polygon 2FD': { fill: 'rgba(180, 140, 60, 0.40)', border: '#8a6d2f', label: 'Zone Résidentielle A' },
+  'Polygon 2E6': { fill: 'rgba(20, 100, 70, 0.40)', border: '#146446', label: 'Marina', interactive: false },
+  'Polygon 1D4': { fill: 'rgba(80, 130, 100, 0.40)', border: '#3d7a5a', label: 'Songon East-Side' },
+  'Polygon 1D2': { fill: 'rgba(55, 90, 65, 0.40)', border: '#375a41', label: 'Zone Résidentielle B', interactive: false },
 };
 
 // Marker config — color, category icon SVG, abbreviation
@@ -21,12 +21,12 @@ const MARKER_CONFIG: Record<string, { color: string; icon: string; abbr: string 
     icon: '<path d="M3 18V12C3 12 5 8 12 8C19 8 21 12 21 12V18" stroke-width="1.5" stroke-linecap="round"/><path d="M6 18V14" stroke-width="1.5"/><path d="M12 18V10" stroke-width="1.5"/><path d="M18 18V14" stroke-width="1.5"/>',
   },
   'Songon East-Side': {
-    color: '#1e6e4b',
+    color: '#3d7a5a',
     abbr: 'SE',
     icon: '<rect x="4" y="8" width="6" height="10" rx="1" stroke-width="1.5"/><rect x="14" y="5" width="6" height="13" rx="1" stroke-width="1.5"/><line x1="2" y1="18" x2="22" y2="18" stroke-width="1.5"/>',
   },
   'Terre de Songon': {
-    color: '#375a41',
+    color: '#8a6d2f',
     abbr: 'TS',
     icon: '<rect x="4" y="8" width="16" height="10" rx="1" stroke-width="1.5"/><path d="M4 8L12 3L20 8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="18" x2="12" y2="12" stroke-width="1.5"/>',
   },
@@ -43,7 +43,7 @@ const MARKER_CONFIG: Record<string, { color: string; icon: string; abbr: string 
 };
 
 function getZoneStyle(name: string) {
-  return ZONE_STYLES[name] || { fill: 'rgba(40, 70, 50, 0.40)', border: '#284632', label: name };
+  return ZONE_STYLES[name] || { fill: 'rgba(40, 70, 50, 0.40)', border: '#284632', label: name, interactive: true };
 }
 
 function createInfoBubble(placemark: KmlPlacemark): string {
@@ -170,55 +170,56 @@ const InteractiveMap = () => {
 
             // Styled zone polygon
             const zoneStyle = getZoneStyle(pm.name);
+            const isInteractive = zoneStyle.interactive !== false;
             const poly = L.polygon(coords, {
               color: zoneStyle.border,
               weight: 2,
               fillColor: zoneStyle.fill,
-              fillOpacity: 1, // opacity is baked into rgba
+              fillOpacity: 1,
               opacity: 0.9,
-              className: 'masterplan-zone',
+              className: isInteractive ? 'masterplan-zone' : 'masterplan-zone-static',
+              interactive: isInteractive,
             });
 
-            const zoneCenter = poly.getBounds().getCenter();
+            if (isInteractive) {
+              const zoneCenter = poly.getBounds().getCenter();
 
-            // Tooltip on hover instead of static label
-            poly.bindTooltip(zoneStyle.label, {
-              direction: 'center',
-              className: 'zone-tooltip',
-              permanent: false,
-            });
+              poly.bindTooltip(zoneStyle.label, {
+                direction: 'center',
+                className: 'zone-tooltip',
+                permanent: false,
+              });
 
-            // Hover highlight — opacity 40% → 70%
-            poly.on('mouseover', function () {
-              this.setStyle({ weight: 3, opacity: 1, fillOpacity: 1.75 });
-              this.getElement()?.classList.add('zone-hover');
-              this.bringToFront();
-            });
-            poly.on('mouseout', function () {
-              this.setStyle({ weight: 2, opacity: 0.9, fillOpacity: 1 });
-              this.getElement()?.classList.remove('zone-hover');
-            });
+              poly.on('mouseover', function () {
+                this.setStyle({ weight: 3, opacity: 1, fillOpacity: 1.75 });
+                this.getElement()?.classList.add('zone-hover');
+                this.bringToFront();
+              });
+              poly.on('mouseout', function () {
+                this.setStyle({ weight: 2, opacity: 0.9, fillOpacity: 1 });
+                this.getElement()?.classList.remove('zone-hover');
+              });
 
-            // Click — show info bubble (one at a time)
-            poly.on('click', (e) => {
-              L.DomEvent.stopPropagation(e);
-              if (activePopupRef.current) {
-                map.closePopup(activePopupRef.current);
-              }
-              const popup = L.popup({
-                maxWidth: 300,
-                minWidth: 260,
-                className: 'masterplan-popup',
-                closeButton: true,
-                autoPan: true,
-                autoPanPaddingTopLeft: L.point(50, 50),
-                autoPanPaddingBottomRight: L.point(50, 50),
-              })
-                .setLatLng(zoneCenter)
-                .setContent(createInfoBubble(pm))
-                .openOn(map);
-              activePopupRef.current = popup;
-            });
+              poly.on('click', (e) => {
+                L.DomEvent.stopPropagation(e);
+                if (activePopupRef.current) {
+                  map.closePopup(activePopupRef.current);
+                }
+                const popup = L.popup({
+                  maxWidth: 300,
+                  minWidth: 260,
+                  className: 'masterplan-popup',
+                  closeButton: true,
+                  autoPan: true,
+                  autoPanPaddingTopLeft: L.point(50, 50),
+                  autoPanPaddingBottomRight: L.point(50, 50),
+                })
+                  .setLatLng(zoneCenter)
+                  .setContent(createInfoBubble(pm))
+                  .openOn(map);
+                activePopupRef.current = popup;
+              });
+            }
 
             poly.addTo(map);
 
