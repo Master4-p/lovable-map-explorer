@@ -7,10 +7,10 @@ import { getProjectInfo } from '@/lib/projectData';
 // Premium zone colors — distinct, intentional palette
 const ZONE_STYLES: Record<string, { fill: string; border: string; label: string; interactive?: boolean }> = {
   'Polygon 323': { fill: 'rgba(212, 175, 55, 0.40)', border: '#d4af37', label: 'Songon Extension' },
-  'Polygon 2FD': { fill: 'rgba(180, 100, 60, 0.40)', border: '#b4643c', label: 'Zone Résidentielle A' },
+  'Polygon 2FD': { fill: 'rgba(200, 160, 120, 0.40)', border: '#c8a078', label: 'Zone Résidentielle A' },
   'Polygon 2E6': { fill: 'rgba(140, 160, 200, 0.35)', border: '#8ca0c8', label: 'Marina', interactive: false },
   'Polygon 1D4': { fill: 'rgba(200, 160, 120, 0.40)', border: '#c8a078', label: 'Songon East-Side' },
-  'Polygon 1D2': { fill: 'rgba(160, 140, 150, 0.30)', border: '#a08c96', label: 'Zone Résidentielle B', interactive: false },
+  'Polygon 1D2': { fill: 'rgba(200, 160, 120, 0.40)', border: '#c8a078', label: 'Zone Résidentielle B', interactive: false },
 };
 
 // Marker config — color, category icon SVG, abbreviation
