@@ -145,8 +145,8 @@ const InteractiveMap = () => {
 
               const perimeterCircle = L.circle(center, {
                 radius,
-                color: '#0d6b4a',
-                weight: 2,
+                color: '#ffffff',
+                weight: 3,
                 dashArray: '12 8',
                 fillColor: 'transparent',
                 fillOpacity: 0,
