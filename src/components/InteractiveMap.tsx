@@ -133,38 +133,28 @@ const InteractiveMap = () => {
 
             // Global perimeter — dashed outline, no fill
             if (pm.name === 'Polygon 356') {
-              const perimeterPoly = L.polygon(coords, {
+              // Draw a dashed circle instead of the rectangle
+              const tempPoly = L.polygon(coords);
+              const bounds = tempPoly.getBounds();
+              const center = bounds.getCenter();
+              const ne = bounds.getNorthEast();
+              const sw = bounds.getSouthWest();
+              const widthMeters = center.distanceTo(L.latLng(center.lat, ne.lng));
+              const heightMeters = center.distanceTo(L.latLng(ne.lat, center.lng));
+              const radius = Math.max(widthMeters, heightMeters);
+
+              const perimeterCircle = L.circle(center, {
+                radius,
                 color: '#0d6b4a',
                 weight: 2,
                 dashArray: '12 8',
                 fillColor: 'transparent',
                 fillOpacity: 0,
                 opacity: 0.6,
+                interactive: false,
               });
 
-              // Tooltip at northeast on hover
-              const ne = perimeterPoly.getBounds().getNorthEast();
-              const center = perimeterPoly.getBounds().getCenter();
-              const tooltipLatLng = L.latLng(
-                center.lat + (ne.lat - center.lat) * 0.7,
-                center.lng + (ne.lng - center.lng) * 0.7
-              );
-              const tooltipMarker = L.marker(tooltipLatLng, { opacity: 0, interactive: false });
-              tooltipMarker.addTo(map);
-
-              perimeterPoly.on('mouseover', () => {
-                tooltipMarker.bindTooltip('One Green Dev', {
-                  permanent: true,
-                  direction: 'top',
-                  className: 'ogd-tooltip',
-                }).openTooltip();
-              });
-              perimeterPoly.on('mouseout', () => {
-                tooltipMarker.closeTooltip();
-                tooltipMarker.unbindTooltip();
-              });
-
-              perimeterPoly.addTo(map);
+              perimeterCircle.addTo(map);
               return;
             }
 
